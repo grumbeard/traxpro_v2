@@ -1,2 +1,6 @@
-<h1>Issues#index</h1>
-<p>Find me in app/views/issues/index.html.erb</p>
+<% @issues.each do |issue| %>
+  <%= link_to issue.title, '#' %>
+<!--   issue_messages_path(issue) %> -->
+<% end %>
+
+<%= link_to 'Report new issue', new_project_issue_path(@project) %>

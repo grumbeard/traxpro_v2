@@ -1,2 +1,5 @@
-<h1>Issues#new</h1>
-<p>Find me in app/views/issues/new.html.erb</p>
+<%= simple_form_for [@project, @issue] do |f| %>
+  <%= f.input :title %>
+  <%= f.association :map %>
+  <%= f.button :submit, value: 'Continue' %>
+<% end %>

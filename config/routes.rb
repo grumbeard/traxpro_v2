@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'issues/index'
-  get 'issues/new'
-  get 'maps/show'
-  get 'maps/new'
   devise_for :users
   root to: 'pages#home'
 
@@ -13,6 +9,7 @@ Rails.application.routes.draw do
     end
     resources :maps, only: [:new, :create]
     resources :project_solvers, only: [:create]
+    resources :issues, only: [:create, :index, :new]
   end
 
   resources :maps, only: [:show]
