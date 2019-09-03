@@ -9,7 +9,6 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-
 ActiveRecord::Schema.define(version: 2019_09_03_055627) do
 
   # These are extensions that must be enabled in order to support this database
@@ -30,13 +29,15 @@ ActiveRecord::Schema.define(version: 2019_09_03_055627) do
     t.index ["sub_category_id"], name: "index_categorizations_on_sub_category_id"
   end
 
-  create_table "issue_assignments", force: :cascade do |t|
+
+
+  create_table "issue_solvers", force: :cascade do |t|
     t.bigint "issue_id"
     t.bigint "project_solver_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["issue_id"], name: "index_issue_assignments_on_issue_id"
-    t.index ["project_solver_id"], name: "index_issue_assignments_on_project_solver_id"
+    t.index ["issue_id"], name: "index_issue_solvers_on_issue_id"
+    t.index ["project_solver_id"], name: "index_issue_solvers_on_project_solver_id"
   end
 
   create_table "issues", force: :cascade do |t|
@@ -126,8 +127,8 @@ ActiveRecord::Schema.define(version: 2019_09_03_055627) do
 
   add_foreign_key "categorizations", "issues"
   add_foreign_key "categorizations", "sub_categories"
-  add_foreign_key "issue_assignments", "issues"
-  add_foreign_key "issue_assignments", "project_solvers"
+  add_foreign_key "issue_solvers", "issues"
+  add_foreign_key "issue_solvers", "project_solvers"
   add_foreign_key "issues", "maps"
   add_foreign_key "issues", "projects"
   add_foreign_key "maps", "projects"
