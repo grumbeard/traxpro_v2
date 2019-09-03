@@ -3,4 +3,5 @@ class SubCategory < ApplicationRecord
   has_many :categorizations, dependent: :destroy
   has_many :specializations
   has_many :users, through: :specializations
+  validates :name, presence: true
 end
