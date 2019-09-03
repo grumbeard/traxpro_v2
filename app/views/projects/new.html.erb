@@ -1,0 +1,7 @@
+<%= simple_form_for(@project) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :photo %>
+  <%= f.input :photo_cache, as: :hidden %>
+  <%= f.button :submit, value: 'Continue' %>
+<% end %>
