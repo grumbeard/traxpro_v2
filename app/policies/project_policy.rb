@@ -4,4 +4,8 @@ class ProjectPolicy < ApplicationPolicy
       scope.all
     end
   end
+
+  def solvers?
+    return true
+  end
 end

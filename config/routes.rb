@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'issues/index'
+  get 'issues/new'
   get 'maps/show'
   get 'maps/new'
   devise_for :users
@@ -6,10 +8,10 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :projects, only: [:index, :show, :new, :create] do
-    resources :maps, only: [:new, :create]
     member do # member will append :id to URI
       get :solvers
     end
+    resources :maps, only: [:new, :create]
     resources :project_solvers, only: [:create]
   end
 
