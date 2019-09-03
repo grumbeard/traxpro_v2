@@ -12,8 +12,10 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+    @project.user = current_user
+    authorize @project
     if @project.save
-      redirect_to new_map_path(@project)
+      redirect_to new_project_map_path(@project)
     else
       render 'new'
     end

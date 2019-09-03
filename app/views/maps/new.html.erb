@@ -1,0 +1,6 @@
+<%= simple_form_for [@project, @map] do |f| %>
+  <%= f.input :title %>
+  <%= f.input :photo %>
+  <%= f.input :photo_cache, as: :hidden %>
+  <%= f.button :submit, value: 'Continue' %>
+<% end %>
