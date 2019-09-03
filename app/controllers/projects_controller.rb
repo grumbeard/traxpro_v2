@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  # before_action :set_projects, only: [:index]
+  before_action :set_project, only: [:solvers, :show]
 
   def index
     @projects = policy_scope(Project).order(created_at: :desc)
@@ -21,12 +21,20 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def show
+  end
+
+  def solvers
+    @solvers = User.where(solver: true)
+    @project_solver = ProjectSolver.new
+  end
+
   private
 
-  # def set_projects
-  #   @projects = Project.all
-  #   authorize @projects
-  # end
+  def set_project
+    @project = Project.find(params[:id])
+    authorize @project
+  end
 
   def project_params
     params.require(:project).permit(:name, :description, :photo)

@@ -13,7 +13,7 @@ class MapsController < ApplicationController
     authorize @map
     @map.project = Project.find(params[:project_id])
     if @map.save
-      redirect_to project_solvers_path(@map.project)
+      redirect_to solvers_project_path(@map.project)
     else
       render 'new'
     end
