@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     end
     resources :project_solvers, only: [:create]
   end
+  resources :projects, only: [:index, :show, :new, :create]
 end
 
 

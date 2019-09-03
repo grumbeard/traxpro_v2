@@ -1,0 +1,12 @@
+<% @projects.each do |project| %>
+  <% if project.photo.blank? %>
+    <%= link_to image_tag("https://source.unsplash.com/collection/3658927/600x400"), '#' %>
+    <!-- issues_path(project) %> -->
+  <% else %>
+    <%= link_to cl_image_tag(project.photo, height: 300, width: 400, crop: :fill), '#' %>
+    <!-- issues_path(project) %> -->
+  <% end %>
+  <%= project.name %>
+<% end %>
+
+<%= link_to 'Create New Project', new_project_path %>
