@@ -1,10 +1,8 @@
 <% @projects.each do |project| %>
   <% if project.photo.blank? %>
-    <%= link_to image_tag("https://source.unsplash.com/600x400/?sig=#{rand(1..100)}/&mansion,luxury"), '#' %>
-    <!-- issues_path(project) %> -->
+    <%= link_to image_tag("https://source.unsplash.com/600x400/?sig=#{rand(1..100)}/&mansion,luxury"), project_issues_path(project) %>
   <% else %>
-    <%= link_to cl_image_tag(project.photo, height: 300, width: 400, crop: :fill), '#' %>
-    <!-- issues_path(project) %> -->
+    <%= link_to cl_image_tag(project.photo, height: 300, width: 400, crop: :fill), project_issues_path(project) %>
   <% end %>
   <%= project.name %>
 <% end %>
