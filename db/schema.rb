@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_03_032617) do
+ActiveRecord::Schema.define(version: 2019_09_03_053227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "issue_assignments", force: :cascade do |t|
+  create_table "issue_solvers", force: :cascade do |t|
     t.bigint "issue_id"
     t.bigint "project_solver_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["issue_id"], name: "index_issue_assignments_on_issue_id"
-    t.index ["project_solver_id"], name: "index_issue_assignments_on_project_solver_id"
+    t.index ["issue_id"], name: "index_issue_solvers_on_issue_id"
+    t.index ["project_solver_id"], name: "index_issue_solvers_on_project_solver_id"
   end
 
   create_table "issues", force: :cascade do |t|
@@ -81,8 +81,8 @@ ActiveRecord::Schema.define(version: 2019_09_03_032617) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "issue_assignments", "issues"
-  add_foreign_key "issue_assignments", "project_solvers"
+  add_foreign_key "issue_solvers", "issues"
+  add_foreign_key "issue_solvers", "project_solvers"
   add_foreign_key "issues", "maps"
   add_foreign_key "issues", "projects"
   add_foreign_key "maps", "projects"
