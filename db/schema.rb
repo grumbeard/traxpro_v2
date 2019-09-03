@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_02_091139) do
+ActiveRecord::Schema.define(version: 2019_09_03_032617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 2019_09_02_091139) do
     t.integer "y_coordinate"
     t.boolean "resolved", default: false
     t.boolean "accepted", default: false
-    t.string "description"
     t.string "title"
     t.bigint "project_id"
     t.datetime "created_at", null: false
