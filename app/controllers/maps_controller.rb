@@ -1,7 +1,4 @@
 class MapsController < ApplicationController
-  def show
-  end
-
   def new
     @project = Project.find(params[:project_id])
     @map = Map.new
@@ -17,6 +14,11 @@ class MapsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def show
+    @map = Map.find(params[:id])
+    authorize @map
   end
 
   private

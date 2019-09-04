@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :issues, only: [] do
+    resources :categorizations, only: [:new, :create]
     resources :messages, only: [:create, :index]
   end
   resources :maps, only: :show

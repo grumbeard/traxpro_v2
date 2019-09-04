@@ -40,7 +40,7 @@ puts "Creating 2 Projects for 'Jimmy'"
   end
 end
 
-puts "Creating 20 new Solvers"
+puts "Creating 20 new project solvers"
 20.times do
   new_user = User.new(
     email: Faker::Internet.email,
@@ -56,27 +56,6 @@ puts "Creating 20 new Solvers"
   )
   new_project_solver.save
   puts "Assigned #{new_user.first_name} to Project #{new_project_solver.project.name}"
-end
-
-puts "Creating 10 issues"
-10.times do
-  new_issue = Issue.new(
-    map: Map.all.sample,
-    x_coordinate: rand(1..10),
-    y_coordinate: rand(1..10),
-    title: Faker::Book.title,
-    project: Project.all.sample,
-    )
-  new_issue.save
-end
-
-puts "Creating 20 issue solvers"
-20.times do
-    new_issue_solver = IssueSolver.new(
-    issue: Issue.all.sample,
-    project_solver: ProjectSolver.all.sample,
-  )
-  new_issue_solver.save
 end
 
 puts "Creating Categories and SubCategories"
@@ -125,4 +104,27 @@ end
 ff_e[1..-1].each do |sub_cat|
   ff_e_sub_category = SubCategory.new(name: sub_cat, category: new_ff_e_category)
   ff_e_sub_category.save
+end
+
+puts "Creating 10 issues"
+10.times do
+  new_issue = Issue.new(
+    map: Map.all.sample,
+    x_coordinate: rand(1..10),
+    y_coordinate: rand(1..10),
+    title: Faker::Book.title,
+    project: Project.all.sample,
+    )
+  new_issue.save
+  new_categorization = Categorization.new(issue: new_issue, sub_category: SubCategory.all.sample)
+  new_categorization.save
+end
+
+puts "Creating 20 issue solvers"
+20.times do
+    new_issue_solver = IssueSolver.new(
+    issue: Issue.all.sample,
+    project_solver: ProjectSolver.all.sample,
+  )
+  new_issue_solver.save
 end
