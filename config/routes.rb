@@ -8,11 +8,14 @@ Rails.application.routes.draw do
       get :solvers
     end
     resources :maps, only: [:new, :create]
-    resources :project_solvers, only: [:create]
+    resources :project_solvers, only: :create
     resources :issues, only: [:create, :index, :new]
   end
 
-  resources :maps, only: [:show]
+  resources :issues, only: [] do
+    resources :messages, only: [:create, :index]
+  end
+  resources :maps, only: :show
 end
 
 

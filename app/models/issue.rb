@@ -7,6 +7,9 @@ class Issue < ApplicationRecord
   has_one :user, through: :project
   has_many :categorizations, dependent: :destroy
   has_many :sub_categories, through: :categorizations
+  has_many :categories, through: :subcategories
 
   validates :title, presence: true
+  validates :x_coordinate, presence: true, on: :update
+  validates :y_coordinate, presence: true, on: :update
 end
