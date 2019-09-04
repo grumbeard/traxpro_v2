@@ -2,18 +2,19 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:solvers, :show]
 
   def index
-    @projects = policy_scope(Project).order(created_at: :desc)
+    # @projects = policy_scope(Project).order(created_at: :desc)
+    @projects = Project.all
   end
 
   def new
     @project = Project.new
-    authorize @project
+    # authorize @project
   end
 
   def create
     @project = Project.new(project_params)
     @project.user = current_user
-    authorize @project
+    # authorize @project
     if @project.save
       redirect_to new_project_map_path(@project)
     else
@@ -33,7 +34,7 @@ class ProjectsController < ApplicationController
 
   def set_project
     @project = Project.find(params[:id])
-    authorize @project
+    # authorize @project
   end
 
   def project_params

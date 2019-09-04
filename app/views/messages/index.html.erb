@@ -1,0 +1,26 @@
+<!--
+Display the messages
+<issue_id.message.user[0]>
+<issue_id.message.user[1]>
+-->
+<ul>
+<% @messages.each do |message| %>
+  <li><%= message.text %></li>
+  <% unless message.photo.blank? %>
+  <li><%= cl_image_tag message.photo %></li>
+  <% end %>
+<% end %>
+</ul>
+<!--
+create an input form for message
+for nested routes, pass to simple_form the parent resource, then the child
+-->
+<%= simple_form_for [@issue, @message] do |f| %>
+  <%= f.input :text %>
+  <%= f.input :photo %>
+  <%= f.input :photo_cache, as: :hidden  %>
+  <%#= f.input(:photo_cache,{:as => :hidden})  %>
+  <%= f.button :submit, value: 'Continue' %>
+  <!-- input should POST to message#new -->
+  <!-- Entire page should reload to display new messages -->
+<% end %>

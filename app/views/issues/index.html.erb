@@ -1,5 +1,5 @@
 <% @issues.each do |issue| %>
-  <%= link_to issue.title, '#' %>
+  <%= link_to issue.title, issue_messages_path(issue) %>
 <!--   issue_messages_path(issue) %> -->
 <% end %>
 
