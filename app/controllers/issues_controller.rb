@@ -8,6 +8,10 @@ class IssuesController < ApplicationController
   def new
     @issue = Issue.new
     authorize @issue
+    @categories = Category.all
+    @subcategories = SubCategory.all.map do |sub|
+     { category_id: sub.category_id, id: sub.id, name: sub.name }
+    end
   end
 
   def create
@@ -15,7 +19,7 @@ class IssuesController < ApplicationController
     authorize @issue
     @issue.project = @project
     if @issue.save
-      redirect_to categories_path
+      redirect_to categories_path(@issue)
     else
       render 'new'
     end

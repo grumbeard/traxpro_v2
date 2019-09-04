@@ -12,8 +12,10 @@ Rails.application.routes.draw do
     resources :issues, only: [:create, :index, :new]
   end
 
+  resources :issues, only: [] do
+    resources :messages, only: [:create, :index]
+  end
   resources :maps, only: :show
-  resources :categories, only: :index
 end
 
 
