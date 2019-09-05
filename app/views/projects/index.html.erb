@@ -1,10 +1,23 @@
-<% @projects.each do |project| %>
-  <% if project.photo.blank? %>
-    <%= link_to image_tag("https://source.unsplash.com/600x400/?sig=#{rand(1..100)}/&mansion,luxury"), project_issues_path(project) %>
-  <% else %>
-    <%= link_to cl_image_tag(project.photo, height: 300, width: 400, crop: :fill), project_issues_path(project) %>
-  <% end %>
-  <%= project.name %>
-<% end %>
+<div class="header-section"></div>
 
-<%= link_to 'Create New Project', new_project_path %>
+<div class="full-screen-height">
+  <div class="main-section">
+    <% @projects.each do |project| %>
+      <div class="rounded-card">
+        <div class="img-container-in-card">
+          <% if project.photo.blank? %>
+            <%= link_to image_tag("https://source.unsplash.com/600x400/?sig=#{rand(1..100)}/&mansion,luxury"), project_issues_path(project) %>
+          <% else %>
+            <%= link_to cl_image_tag(project.photo, height: 200, width: 300, crop: :fill), project_issues_path(project) %>
+          <% end %>
+        </div>
+        <div class="text-container-in-card emerald">
+          <p><%= project.name %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="btn-container">
+    <%= link_to 'Create New Project', new_project_path, class: 'create-btn emerald' %>
+  </div>
+</div>

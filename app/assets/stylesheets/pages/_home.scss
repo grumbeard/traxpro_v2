@@ -1,1 +1,16 @@
 // Specific CSS for your home-page
+.jumbotron {
+  color: white;
+  background-image: asset-url('construction-unsplash.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 70vh;
+  display: flex;
+  align-items: center;
+}
+
+.landing-page-callout {
+  justify-content: center;
+}

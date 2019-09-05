@@ -19,8 +19,9 @@ for nested routes, pass to simple_form the parent resource, then the child
   <%= f.input :text %>
   <%= f.input :photo %>
   <%= f.input :photo_cache, as: :hidden  %>
-  <%#= f.input(:photo_cache,{:as => :hidden})  %>
-  <%= f.button :submit, value: 'Continue' %>
+  <%= f.button :submit, value: 'Submit' %>
   <!-- input should POST to message#new -->
+  <%= link_to 'All Issues', project_issues_path(@issue.project) %>
+  <%= link_to 'Map View', map_path(@issue.map) %>
   <!-- Entire page should reload to display new messages -->
 <% end %>

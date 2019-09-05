@@ -2,8 +2,10 @@ class MessagesController < ApplicationController
   before_action :set_issue, only: [:index, :new, :create]
 
   def index
-    @messages = @issue.messages.order(created_at: :asc)
-    @message = Message.new
+    @messages = policy_scope(Message).order(created_at: :asc)
+    @messages.select { |message| message.issue == @issue }
+    @message = Message.new(issue: @issue)
+    authorize @message
   end
 
   def new
@@ -11,6 +13,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
+    authorize @message
     @message.user = current_user
     @message.issue = @issue
     if @message.save

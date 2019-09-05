@@ -12,18 +12,48 @@
 @import "components/index";
 @import "pages/index";
 
-.jumbotron {
-  color: white;
-  background-image: asset-url('construction-unsplash.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: rgba(0, 0, 0, 0.5);
-  height: 70vh;
-  display: flex;
-  align-items: center;
+body {
+  font-family: 'Raleway', sans-serif;
+  h1 {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 28px;
+    color: white;
+  }
+  a, p{
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    color: white;
+  }
 }
 
-.landing-page-callout {
-  justify-content: center;
+.header-section {
+  margin: 50px 8vw;
+}
+
+.main-section {
+  margin: 10px 8vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.full-screen-height {
+  height: 100vh;
+}
+
+.emerald {
+  background-color: $emerald;
+}
+
+.pink {
+  background-color: $pink;
+}
+
+.orange {
+  background-color: $orange;
+}
+
+.beige {
+  background-color: $beige;
 }
