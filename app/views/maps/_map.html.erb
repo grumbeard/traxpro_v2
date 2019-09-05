@@ -1,128 +1,22 @@
-<% if @map.photo.blank? %>
-  <%= image_tag("https://upload.wikimedia.org/wikipedia/commons/9/9a/Sample_Floorplan.jpg") %>
-<% else %>
-  <div class="map-container container">
-
-    <div class="row" data-row='1'>
-      <div class="box" data-row='1' data-col='A'></div>
-      <div class="box" data-row='1' data-col='B'></div>
-      <div class="box" data-row='1' data-col='C'></div>
-      <div class="box" data-row='1' data-col='D'></div>
-      <div class="box" data-row='1' data-col='E'></div>
-      <div class="box" data-row='1' data-col='F'></div>
-      <div class="box" data-row='1' data-col='G'></div>
-      <div class="box" data-row='1' data-col='H'></div>
-      <div class="box" data-row='1' data-col='I'></div>
-      <div class="box" data-row='1' data-col='J'></div>
+<div class="map-container">
+  <% if @map.photo.blank? %>
+    <%= image_tag("https://upload.wikimedia.org/wikipedia/commons/9/9a/Sample_Floorplan.jpg") %>
+  <% else %>
+    <div class="map-image container" style="background-image: url('<%= cl_image_path @map.photo, height: 600, width: 600, crop: :pad %>')">
+      <% for i in 1..30 do %>
+        <div class="row">
+        <% for j in 1..30 do %>
+          <div class="box" data-row="<%= i %>" data-col="<%= j %>"></div>
+        <% end %>
+        </div>
+      <% end %>
     </div>
-    <div class="row" data-row='2'>
-      <div class="box" data-row='2' data-col='A'></div>
-      <div class="box" data-row='2' data-col='B'></div>
-      <div class="box" data-row='2' data-col='C'></div>
-      <div class="box" data-row='2' data-col='D'></div>
-      <div class="box" data-row='2' data-col='E'></div>
-      <div class="box" data-row='2' data-col='F'></div>
-      <div class="box" data-row='2' data-col='G'></div>
-      <div class="box" data-row='2' data-col='H'></div>
-      <div class="box" data-row='2' data-col='I'></div>
-      <div class="box" data-row='2' data-col='J'></div>
-    </div>
-    <div class="row" data-row='3'>
-      <div class="box" data-row='3' data-col='A'></div>
-      <div class="box" data-row='3' data-col='B'></div>
-      <div class="box" data-row='3' data-col='C'></div>
-      <div class="box" data-row='3' data-col='D'></div>
-      <div class="box" data-row='3' data-col='E'></div>
-      <div class="box" data-row='3' data-col='F'></div>
-      <div class="box" data-row='3' data-col='G'></div>
-      <div class="box" data-row='3' data-col='H'></div>
-      <div class="box" data-row='3' data-col='I'></div>
-      <div class="box" data-row='3' data-col='J'></div>
-    </div>
-    <div class="row" data-row='4'>
-      <div class="box" data-row='4' data-col='A'></div>
-      <div class="box" data-row='4' data-col='B'></div>
-      <div class="box" data-row='4' data-col='C'></div>
-      <div class="box" data-row='4' data-col='D'></div>
-      <div class="box" data-row='4' data-col='E'></div>
-      <div class="box" data-row='4' data-col='F'></div>
-      <div class="box" data-row='4' data-col='G'></div>
-      <div class="box" data-row='4' data-col='H'></div>
-      <div class="box" data-row='4' data-col='I'></div>
-      <div class="box" data-row='4' data-col='J'></div>
-    </div>
-    <div class="row" data-row='5'>
-      <div class="box" data-row='5' data-col='A'></div>
-      <div class="box" data-row='5' data-col='B'></div>
-      <div class="box" data-row='5' data-col='C'></div>
-      <div class="box" data-row='5' data-col='D'></div>
-      <div class="box" data-row='5' data-col='E'></div>
-      <div class="box" data-row='5' data-col='F'></div>
-      <div class="box" data-row='5' data-col='G'></div>
-      <div class="box" data-row='5' data-col='H'></div>
-      <div class="box" data-row='5' data-col='I'></div>
-      <div class="box" data-row='5' data-col='J'></div>
-    </div>
-    <div class="row" data-row='6'>
-      <div class="box" data-row='6' data-col='A'></div>
-      <div class="box" data-row='6' data-col='B'></div>
-      <div class="box" data-row='6' data-col='C'></div>
-      <div class="box" data-row='6' data-col='D'></div>
-      <div class="box" data-row='6' data-col='E'></div>
-      <div class="box" data-row='6' data-col='F'></div>
-      <div class="box" data-row='6' data-col='G'></div>
-      <div class="box" data-row='6' data-col='H'></div>
-      <div class="box" data-row='6' data-col='I'></div>
-      <div class="box" data-row='6' data-col='J'></div>
-    </div>
-    <div class="row" data-row='7'>
-      <div class="box" data-row='7' data-col='A'></div>
-      <div class="box" data-row='7' data-col='B'></div>
-      <div class="box" data-row='7' data-col='C'></div>
-      <div class="box" data-row='7' data-col='D'></div>
-      <div class="box" data-row='7' data-col='E'></div>
-      <div class="box" data-row='7' data-col='F'></div>
-      <div class="box" data-row='7' data-col='G'></div>
-      <div class="box" data-row='7' data-col='H'></div>
-      <div class="box" data-row='7' data-col='I'></div>
-      <div class="box" data-row='7' data-col='J'></div>
-    </div>
-    <div class="row" data-row='8'>
-      <div class="box" data-row='8' data-col='A'></div>
-      <div class="box" data-row='8' data-col='B'></div>
-      <div class="box" data-row='8' data-col='C'></div>
-      <div class="box" data-row='8' data-col='D'></div>
-      <div class="box" data-row='8' data-col='E'></div>
-      <div class="box" data-row='8' data-col='F'></div>
-      <div class="box" data-row='8' data-col='G'></div>
-      <div class="box" data-row='8' data-col='H'></div>
-      <div class="box" data-row='8' data-col='I'></div>
-      <div class="box" data-row='8' data-col='J'></div>
-    </div>
-    <div class="row" data-row='9'>
-      <div class="box" data-row='9' data-col='A'></div>
-      <div class="box" data-row='9' data-col='B'></div>
-      <div class="box" data-row='9' data-col='C'></div>
-      <div class="box" data-row='9' data-col='D'></div>
-      <div class="box" data-row='9' data-col='E'></div>
-      <div class="box" data-row='9' data-col='F'></div>
-      <div class="box" data-row='9' data-col='G'></div>
-      <div class="box" data-row='9' data-col='H'></div>
-      <div class="box" data-row='9' data-col='I'></div>
-      <div class="box" data-row='9' data-col='J'></div>
-    </div>
-    <div class="row" data-row='10'>
-      <div class="box" data-row='10' data-col='A'></div>
-      <div class="box" data-row='10' data-col='B'></div>
-      <div class="box" data-row='10' data-col='C'></div>
-      <div class="box" data-row='10' data-col='D'></div>
-      <div class="box" data-row='10' data-col='E'></div>
-      <div class="box" data-row='10' data-col='F'></div>
-      <div class="box" data-row='10' data-col='G'></div>
-      <div class="box" data-row='10' data-col='H'></div>
-      <div class="box" data-row='10' data-col='I'></div>
-      <div class="box" data-row='10' data-col='J'></div>
-    </div>
-
-  </div>
-<% end %>
+  <% end %>
+</div>
+<div class="btn-container">
+  <%= simple_form_for [@map.project, @issue] do |f| %>
+  <%= f.hidden_field :x_coordinate, value: 'x' %>
+  <%= f.hidden_field :y_coordinate, value: 'y' %>
+  <%= f.button :submit, value: 'Continue', class: 'create-btn emerald' %>
+  <% end %>
+</div>

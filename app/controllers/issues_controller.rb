@@ -15,7 +15,12 @@ class IssuesController < ApplicationController
   def create
     @issue = Issue.new(issue_params)
     authorize @issue
+    if params[:issue].present?
+      @issue.x_coordinate = params[:issue][:x_coordinate]
+      @issue.y_coordinate = params[:issue][:y_coordinate]
+    end
     @issue.project = @project
+    @issue.title = "Placeholder Title"
     if @issue.save
       params[:subcategories].each do |subcategory|
         new_categorization = Categorization.new(issue: @issue, sub_category_id: subcategory)
