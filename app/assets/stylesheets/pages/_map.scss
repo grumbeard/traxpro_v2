@@ -1,0 +1,20 @@
+.map-container {
+  background-image: url('<%= cl_image_path @article.photo, height: 300, width: 400, crop: :fill %>');
+  height: 80vh;
+  width: 80vw;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+
+.box {
+  flex: 1;
+  height: 8vh;
+  width: 8vw;
+  border: solid 0.5px pink;
+}
+
+.blue {
+  background-color: lightblue;
+}

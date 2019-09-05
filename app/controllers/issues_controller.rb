@@ -2,8 +2,7 @@ class IssuesController < ApplicationController
   before_action :set_project, only: [:index, :new, :create]
 
   def index
-    @issues = policy_scope(Issue).order(created_at: :desc)
-    @issues = Issue.all
+    @issues = policy_scope(Issue).order(created_at: :desc).select { |issue| issue.project == @project }
   end
 
   def new

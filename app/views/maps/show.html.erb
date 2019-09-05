@@ -1,8 +1,4 @@
-<% if @map.photo.blank? %>
-  <%= image_tag("https://upload.wikimedia.org/wikipedia/commons/9/9a/Sample_Floorplan.jpg") %>
-<% else %>
-  <%= cl_image_tag(@map.photo, height: 300, width: 400, crop: :fill) %>
-<% end %>
+<%= render 'map' %>
 
 <ol>
   <% @map.issues.each do |issue| %>
