@@ -1,7 +1,6 @@
 <ol>
   <% @issues.each do |issue| %>
-    <li><%= link_to issue.title, '#' %></li>
-  <!--   issue_messages_path(issue) %> -->
+    <li><%= link_to issue.title, issue_messages_path(issue) %></li>
   <% end %>
 </ol>
 

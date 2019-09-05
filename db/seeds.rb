@@ -1,19 +1,13 @@
 require 'faker'
 require 'csv'
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-puts "Destroying all previous Users..."
+
+puts "Destroying all Categories, Subcategories, Issues and Users..."
 Category.destroy_all
 SubCategory.destroy_all
 Issue.destroy_all
 User.destroy_all
 
-puts "Creating Raiser account 'Jimmy'"
+puts "Creating User 'Jimmy'"
 jimmy = User.new(
   email: 'jimmy@traxpro.com',
   password: 'password',
@@ -38,24 +32,6 @@ puts "Creating 2 Projects for 'Jimmy'"
     )
     new_map.save
   end
-end
-
-puts "Creating 20 new project solvers"
-20.times do
-  new_user = User.new(
-    email: Faker::Internet.email,
-    password: 'password',
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    solver: true
-  )
-  new_user.save
-  new_project_solver = ProjectSolver.new(
-    user: new_user,
-    project: jimmy.projects.sample
-  )
-  new_project_solver.save
-  puts "Assigned #{new_user.first_name} to Project #{new_project_solver.project.name}"
 end
 
 puts "Creating Categories and SubCategories"
@@ -127,4 +103,29 @@ puts "Creating 20 issue solvers"
     project_solver: ProjectSolver.all.sample,
   )
   new_issue_solver.save
+end
+
+puts "Creating 20 new Users (Solvers)"
+20.times do
+  new_user = User.new(
+    email: Faker::Internet.email,
+    password: 'password',
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    solver: true
+  )
+  new_user.save
+  # 1 Solver created
+  new_project_solver = ProjectSolver.new(
+    user: new_user,
+    project: jimmy.projects.sample
+  )
+  new_project_solver.save
+  # 1 Solver assigned to random project
+  puts "Assigned #{new_user.first_name} to Project #{new_project_solver.project.name}"
+  new_specialization = Specialization.new(
+    sub_category: SubCategory.all.sample,
+    user: new_user
+  )
+  new_specialization.save
 end

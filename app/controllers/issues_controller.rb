@@ -2,7 +2,8 @@ class IssuesController < ApplicationController
   before_action :set_project, only: [:index, :new, :create]
 
   def index
-    @issues = policy_scope(Issue).order(created_at: :desc)
+    # @issues = policy_scope(Issue).order(created_at: :desc)
+    @issues = Issue.all
   end
 
   def new
@@ -10,13 +11,12 @@ class IssuesController < ApplicationController
     @subcategories = SubCategory.all.map do |sub|
       { category_id: sub.category_id, id: sub.id, name: sub.name }
     end
-
     authorize @issue
   end
 
   def create
     @issue = Issue.new(issue_params)
-    authorize @issue
+    # authorize @issue
     @issue.project = @project
     if @issue.save
       params[:subcategories].each do |subcategory|
