@@ -1,6 +1,8 @@
-<% @issues.each do |issue| %>
-  <%= link_to issue.title, issue_messages_path(issue) %>
-<!--   issue_messages_path(issue) %> -->
-<% end %>
+<ol>
+  <% @issues.each do |issue| %>
+    <li><%= link_to issue.title, issue_messages_path(issue) %></li>
+  <% end %>
+</ol>
 
 <%= link_to 'Report new issue', new_project_issue_path(@project) %>
+<%= link_to 'Project details', project_path(@project) %>
