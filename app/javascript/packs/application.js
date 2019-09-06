@@ -1,29 +1,25 @@
 import "bootstrap";
 import { toggleBoxesBlue } from '../pages/map';
+import { pinAllIssues } from '../pages/map_pin_issue';
+import { filterSubCategories } from '../filters/filter_subcategories';
+
+const map_page_checker = document.querySelectorAll('.box');
+if (map_page_checker !== null) { toggleBoxesBlue(); };
 
 toggleBoxesBlue();
 
-let selectedCategoryId = null;
 
 const categories = document.querySelectorAll('[data-id]');
-categories.forEach((category) => {
-  category.addEventListener('click', (event) => {
-    const selectedCategory = event.currentTarget;
-    selectedCategoryId = selectedCategory.dataset['id'];
-    filterSubCategories(selectedCategoryId);
+if (categories !== null) {
+  let selectedCategoryId = null;
+  categories.forEach((category) => {
+    category.addEventListener('click', (event) => {
+      const selectedCategory = event.currentTarget;
+      selectedCategoryId = selectedCategory.dataset['id'];
+      filterSubCategories(selectedCategoryId);
+    });
   });
-});
+};
 
-const filterSubCategories = (selectedCategoryId) => {
-  const data = document.querySelector('[data-subcategories]');
-  const subCategoriesJSON = data.dataset['subcategories'];
-  const allSubCategories = JSON.parse(subCategoriesJSON);
-  const filteredSubCategories = allSubCategories.filter((sub) => {
-    return sub.category_id === parseInt(selectedCategoryId)
-  });
-  const checkboxDiv = document.getElementById('category-checkbox');
-  checkboxDiv.innerHTML = "";
-  filteredSubCategories.forEach((subcategory) => {
-    checkboxDiv.insertAdjacentHTML('afterbegin', `<div class="form-check"><input type="checkbox" name="subcategories[]" value="${subcategory.id}"><label class="form-check-label">${subcategory.name}</label></div>` );
-  });
-}
+const map_all_pins_checker = document.querySelector('[data-issues]').dataset.issues;
+if (map_all_pins_checker !== null) { pinAllIssues(); };
