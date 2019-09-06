@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :projects, only: [:index, :show, :new, :create] do
     member do # member will append :id to URI
       get :solvers
+      get :chart
     end
     resources :maps, only: [:new, :create]
     resources :project_solvers, only: :create

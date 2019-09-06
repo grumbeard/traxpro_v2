@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:solvers, :show]
+  before_action :set_project, only: [:solvers, :show, :chart]
 
   def index
     @projects = policy_scope(Project).order(created_at: :desc)
@@ -27,6 +27,10 @@ class ProjectsController < ApplicationController
   def solvers
     @solvers = User.where(solver: true)
     @project_solver = ProjectSolver.new
+  end
+
+  def chart
+    @issues = @project.issues
   end
 
   private
