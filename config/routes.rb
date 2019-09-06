@@ -10,11 +10,15 @@ Rails.application.routes.draw do
     end
     resources :maps, only: [:new, :create]
     resources :project_solvers, only: :create
-    resources :issues, only: [:create, :index, :new]
+    resources :issues, only: [:create, :index, :new, :update]
   end
 
   resources :issues, only: [] do
+    resources :categorizations, only: [:new, :create]
     resources :messages, only: [:create, :index]
+    resources :maps, only: [] do
+      get :pin
+    end
   end
   resources :maps, only: :show
 end

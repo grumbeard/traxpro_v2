@@ -34,27 +34,6 @@ puts "Creating 2 Projects for 'Jimmy'"
   end
 end
 
-puts "Creating 10 issues"
-10.times do
-  new_issue = Issue.new(
-    map: Map.all.sample,
-    x_coordinate: rand(1..10),
-    y_coordinate: rand(1..10),
-    title: Faker::Book.title,
-    project: Project.all.sample,
-    )
-  new_issue.save
-end
-
-puts "Creating 20 issue solvers"
-20.times do
-    new_issue_solver = IssueSolver.new(
-    issue: Issue.all.sample,
-    project_solver: ProjectSolver.all.sample,
-  )
-  new_issue_solver.save
-end
-
 puts "Creating Categories and SubCategories"
 
 filepath = 'db/categories.csv'
@@ -103,6 +82,29 @@ ff_e[1..-1].each do |sub_cat|
   ff_e_sub_category.save
 end
 
+puts "Creating 10 issues"
+10.times do
+  new_issue = Issue.new(
+    map: Map.all.sample,
+    x_coordinate: rand(1..10),
+    y_coordinate: rand(1..10),
+    title: Faker::Book.title,
+    project: Project.all.sample,
+    )
+  new_issue.save
+  new_categorization = Categorization.new(issue: new_issue, sub_category: SubCategory.all.sample)
+  new_categorization.save
+end
+
+puts "Creating 20 issue solvers"
+20.times do
+    new_issue_solver = IssueSolver.new(
+    issue: Issue.all.sample,
+    project_solver: ProjectSolver.all.sample,
+  )
+  new_issue_solver.save
+end
+
 puts "Creating 20 new Users (Solvers)"
 20.times do
   new_user = User.new(
@@ -127,4 +129,3 @@ puts "Creating 20 new Users (Solvers)"
   )
   new_specialization.save
 end
-

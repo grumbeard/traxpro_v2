@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   after_action :verify_authorized, except: [:index, :chart], unless: :skip_pundit?
   after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
+  after_action :verify_authorized, if: :messages_index?
 
   # Uncomment when you *really understand* Pundit!
   # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -14,6 +15,10 @@ class ApplicationController < ActionController::Base
   # end
 
   private
+
+  def messages_index?
+    params[:controller] == 'messages' && params[:action] == 'index'
+  end
 
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
