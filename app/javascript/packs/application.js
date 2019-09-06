@@ -1,7 +1,7 @@
 import "bootstrap";
-// import "printAllSubCategories" from '../filters/categorization_filter_subcategories';
+import { toggleBoxesBlue } from '../pages/map';
 
-// printAllSubCategories();
+toggleBoxesBlue();
 
 let selectedCategoryId = null;
 
@@ -10,17 +10,14 @@ categories.forEach((category) => {
   category.addEventListener('click', (event) => {
     const selectedCategory = event.currentTarget;
     selectedCategoryId = selectedCategory.dataset['id'];
-    printFilteredSubCategories(selectedCategoryId);
+    filterSubCategories(selectedCategoryId);
   });
 });
 
-const printFilteredSubCategories = (selectedCategoryId) => {
+const filterSubCategories = (selectedCategoryId) => {
   const data = document.querySelector('[data-subcategories]');
   const subCategoriesJSON = data.dataset['subcategories'];
   const allSubCategories = JSON.parse(subCategoriesJSON);
-  // allSubCategories.forEach((subCategory) => {
-  //   console.log(subCategory.category_id);
-  // });
   const filteredSubCategories = allSubCategories.filter((sub) => {
     return sub.category_id === parseInt(selectedCategoryId)
   });

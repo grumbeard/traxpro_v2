@@ -1,0 +1,26 @@
+.btn-container {
+  width: 100vw;
+  z-index: 2;
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  justify-content: space-around
+}
+.create-btn {
+  align-self: flex-end;
+  padding: 20px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.command-btn {
+  height: 30px;
+  width: auto;
+  padding: 5px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  margin-bottom: 5vh;
+}

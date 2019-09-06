@@ -1,0 +1,22 @@
+<div class="map-container">
+  <% if @map.photo.blank? %>
+    <%= image_tag("https://upload.wikimedia.org/wikipedia/commons/9/9a/Sample_Floorplan.jpg") %>
+  <% else %>
+    <div class="map-image container" style="background-image: url('<%= cl_image_path @map.photo, height: 600, width: 600, crop: :pad %>')">
+      <% for i in 1..30 do %>
+        <div class="row">
+        <% for j in 1..30 do %>
+          <div class="box" data-row="<%= i %>" data-col="<%= j %>"></div>
+        <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<div class="btn-container">
+  <%= simple_form_for [@map.project, @issue] do |f| %>
+  <%= f.hidden_field :x_coordinate, value: 'x' %>
+  <%= f.hidden_field :y_coordinate, value: 'y' %>
+  <%= f.button :submit, value: 'Continue', class: 'create-btn emerald' %>
+  <% end %>
+</div>
