@@ -5,6 +5,7 @@ puts "Destroying all Categories, Subcategories, Issues and Users..."
 Category.destroy_all
 SubCategory.destroy_all
 Issue.destroy_all
+ProjectSolver.destroy_all
 User.destroy_all
 
 puts "Creating User 'Jimmy'"

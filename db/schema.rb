@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_03_055627) do
+ActiveRecord::Schema.define(version: 2019_09_06_060919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,9 @@ ActiveRecord::Schema.define(version: 2019_09_03_055627) do
     t.bigint "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deadline"
+    t.datetime "date_resolved"
+    t.datetime "date_accepted"
     t.index ["map_id"], name: "index_issues_on_map_id"
     t.index ["project_id"], name: "index_issues_on_project_id"
   end
