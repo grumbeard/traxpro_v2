@@ -29,6 +29,7 @@ puts "Creating 2 Projects for 'Jimmy'"
     new_map = Map.new(
       project: new_project,
       title: Faker::Space.galaxy,
+      remote_photo_url: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Sample_Floorplan.jpg'
     )
     new_map.save
   end
@@ -86,8 +87,8 @@ puts "Creating 10 issues"
 10.times do
   new_issue = Issue.new(
     map: Map.all.sample,
-    x_coordinate: rand(1..10),
-    y_coordinate: rand(1..10),
+    x_coordinate: rand(1..30),
+    y_coordinate: rand(1..30),
     title: Faker::Book.title,
     project: Project.all.sample,
     )
