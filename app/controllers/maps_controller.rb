@@ -19,6 +19,12 @@ class MapsController < ApplicationController
   def show
     @map = Map.find(params[:id])
     authorize @map
+    @issue = Issue.new
+  end
+
+  def pin
+    @issue = Issue.find(params[:issue_id])
+    @map = Map.find(params[:map_id])
   end
 
   private
