@@ -22,6 +22,11 @@ class MapsController < ApplicationController
     @issue = Issue.new
   end
 
+  def pin
+    @issue = Issue.find(params[:issue_id])
+    @map = Map.find(params[:map_id])
+  end
+
   private
 
   def map_params
