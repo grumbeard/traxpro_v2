@@ -19,7 +19,9 @@ class MapsController < ApplicationController
   def show
     @map = Map.find(params[:id])
     authorize @map
-    @issue = Issue.new
+    @issues = Issue.where("map_id = #{@map.id}").map do |issue|
+      { map_id: issue.map_id, id: issue.id, x_coordinate: issue.x_coordinate, y_coordinate: issue.y_coordinate }
+    end
   end
 
   def pin
