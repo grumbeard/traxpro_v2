@@ -87,10 +87,11 @@ puts "Creating 10 issues"
 10.times do
   new_issue = Issue.new(
     map: Map.all.sample,
-    x_coordinate: rand(1..10),
-    y_coordinate: rand(1..10),
+    x_coordinate: rand(1..30),
+    y_coordinate: rand(1..30),
     title: Faker::Book.title,
     project: Project.all.sample,
+    # rand(10.years).ago
     )
   new_issue.save
   new_categorization = Categorization.new(issue: new_issue, sub_category: SubCategory.all.sample)
