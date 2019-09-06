@@ -6,8 +6,6 @@ import { filterSubCategories } from '../filters/filter_subcategories';
 const map_page_checker = document.querySelectorAll('.box');
 if (map_page_checker !== null) { toggleBoxesBlue(); };
 
-toggleBoxesBlue();
-
 
 const categories = document.querySelectorAll('[data-id]');
 if (categories !== null) {
@@ -21,5 +19,7 @@ if (categories !== null) {
   });
 };
 
-const map_all_pins_checker = document.querySelector('[data-issues]').dataset.issues;
-if (map_all_pins_checker !== null) { pinAllIssues(); };
+if (document.querySelector('[data-issues]')) {
+    const map_all_pins_checker = document.querySelector('[data-issues]').dataset.issues
+    pinAllIssues()
+  }
