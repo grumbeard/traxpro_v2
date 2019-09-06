@@ -13,13 +13,13 @@ class User < ApplicationRecord
 
   validates :first_name, presence: true
 
-  include PgSearch::Model
-  pg_search_scope :global_search,
-    against: [ :first_name, :last_name ],
-    associated_against: {
-      sub_category: [ :name ] # singular sub_categories
-    },
-    using: {
-      tsearch: { prefix: true }
-    }
+  # include PgSearch::Model
+  # pg_search_scope :global_search,
+  #   against: [ :first_name, :last_name ],
+  #   associated_against: {
+  #     sub_category: [ :name ] # singular sub_categories
+  #   },
+  #   using: {
+  #     tsearch: { prefix: true }
+  #   }
 end
