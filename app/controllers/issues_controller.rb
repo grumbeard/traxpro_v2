@@ -11,7 +11,7 @@ class IssuesController < ApplicationController
     @subcategories = SubCategory.all.map do |sub|
       { category_id: sub.category_id, id: sub.id, name: sub.name }
     end
-    authorize @issue
+    # authorize @issue
   end
 
   def create
