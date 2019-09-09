@@ -1,27 +1,27 @@
-<!--
-Display the messages
-<issue_id.message.user[0]>
-<issue_id.message.user[1]>
--->
-<ul>
 <% @messages.each do |message| %>
-  <li><%= message.text %></li>
-  <% unless message.photo.blank? %>
-  <li><%= cl_image_tag message.photo %></li>
-  <% end %>
+  <div class="chat-container">
+    <p><%= message.text %></p>
+      <% unless message.photo.blank? %>
+        <%= cl_image_tag(message.photo, :transformation => { :width => 250, :crop => "pad" }) %>
+      <% end %>
+    <p class="time-right"><%= message.user.first_name %> <%= message.created_at.strftime("%X") %></p>
+  </div>
 <% end %>
-</ul>
+
 <!--
 create an input form for message
 for nested routes, pass to simple_form the parent resource, then the child
 -->
-<%= simple_form_for [@issue, @message] do |f| %>
-  <%= f.input :text %>
-  <%= f.input :photo %>
-  <%= f.input :photo_cache, as: :hidden  %>
-  <%= f.button :submit, value: 'Submit' %>
-  <!-- input should POST to message#new -->
+<div>
+  <%= simple_form_for [@issue, @message] do |f| %>
+    <%= f.input :text %>
+    <%= f.input :photo %>
+    <%= f.input :photo_cache, as: :hidden  %>
+    <%= f.button :submit, value: 'Submit' %>
+    <!-- input should POST to message#new -->
+    <!-- Entire page should reload to display new messages -->
+  <% end %>
   <%= link_to 'All Issues', project_issues_path(@issue.project) %>
   <%= link_to 'Map View', map_path(@issue.map) %>
-  <!-- Entire page should reload to display new messages -->
-<% end %>
+  <%= link_to 'Issue Details & Add Solver', project_issue_path(@issue.project, @issue) %>
+</div>

@@ -6,6 +6,7 @@ class IssuesController < ApplicationController
   end
 
   def new
+    @user = User.all
     @issue = Issue.new
     @subcategories = SubCategory.all.map do |sub|
       { category_id: sub.category_id, id: sub.id, name: sub.name }
@@ -38,6 +39,13 @@ class IssuesController < ApplicationController
     else
       render issue_map_pin_path(@project, @issue)
     end
+  end
+
+  def show
+    @issue = Issue.find(params[:id])
+    @solvers = User.where(solver: true)
+    @issue_solvers = IssueSolver.where(issue: @issue)
+    @issue_solver = IssueSolver.new
   end
 
   private

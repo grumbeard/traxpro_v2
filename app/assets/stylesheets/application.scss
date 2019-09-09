@@ -20,12 +20,22 @@ body {
     font-weight: 600;
     font-size: 24px;
     line-height: 28px;
-    color: white;
+    color: black;
   }
-  a, p{
+  p{
     font-weight: 300;
     font-size: 14px;
     line-height: 16px;
+    color: black;
+  }
+
+  a {
+    transition: all 0.3s ease 0s;
+    color: white;
+  }
+  a:hover {
+    text-decoration: none;
+    opacity: 0.75;
     color: white;
   }
 }
@@ -38,6 +48,11 @@ body {
   margin: 10px 8vw;
   display: flex;
   flex-direction: column;
+}
+
+.limit-screen-height{
+  height: 80vh;
+  overflow: scroll;
 }
 
 .full-screen-height {
@@ -59,3 +74,5 @@ body {
 .beige {
   background-color: $beige;
 }
+
+

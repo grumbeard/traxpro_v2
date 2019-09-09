@@ -30,6 +30,7 @@ puts "Creating 2 Projects for 'Jimmy'"
     new_map = Map.new(
       project: new_project,
       title: Faker::Space.galaxy,
+      remote_photo_url: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Sample_Floorplan.jpg'
     )
     new_map.save
   end

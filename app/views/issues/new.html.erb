@@ -8,7 +8,7 @@
     <%= simple_form_for [@project, @issue] do |f| %>
     <div class="carousel-item active">
       <%= f.input :title %>
-      <%= f.association :map %>
+      <%= f.association :map, collection: @project.maps%>
     </div>
     <div class="carousel-item">
       <% Category.all.each do |category| %>
