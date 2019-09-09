@@ -7,8 +7,10 @@
 .btn-container {
   width: 100vw;
   z-index: 2;
-  position: sticky;
+  position: fixed;
   bottom: 0px;
+  right: 0px;
+  left: 0px;
 }
 
 .contents-center {
