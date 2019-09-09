@@ -49,6 +49,10 @@ ActiveRecord::Schema.define(version: 2019_09_08_110035) do
     t.bigint "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deadline"
+    t.datetime "date_resolved"
+    t.datetime "date_accepted"
+    t.datetime "date_created"
     t.index ["map_id"], name: "index_issues_on_map_id"
     t.index ["project_id"], name: "index_issues_on_project_id"
   end

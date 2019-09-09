@@ -8,4 +8,8 @@ class ProjectPolicy < ApplicationPolicy
   def solvers?
     return true
   end
+
+  def chart?
+    true
+  end
 end
