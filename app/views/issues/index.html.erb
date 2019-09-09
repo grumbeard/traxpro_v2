@@ -1,3 +1,14 @@
+<div>
+  <%= form_tag project_issues_path, method: :get do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Find An Issue"
+    %>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
 <div class="main-section full-screen-height">
   <% @issues.each do |issue| %>
     <%= link_to issue_messages_path(issue) do %>
@@ -12,6 +23,7 @@
     <% end %>
   <% end %>
 </div>
+
 
 <div class="btn-container">
   <%= link_to 'Report new issue', new_project_issue_path(@project), class: "emerald command-btn" %>
