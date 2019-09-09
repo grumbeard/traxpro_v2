@@ -5,4 +5,5 @@ class Map < ApplicationRecord
   has_many :issues, dependent: :destroy
 
   validates :title, presence: true
+  validates :photo, presence: true
 end
