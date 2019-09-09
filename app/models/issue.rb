@@ -14,7 +14,7 @@ class Issue < ApplicationRecord
   validates :y_coordinate, presence: true, on: :update
 
   include PgSearch::Model
-  pg_search_scope :search_title,
+  pg_search_scope :search_issues,
     against: [:title],
     using: {
       tsearch: { prefix: true } # <-- now `superman batm` will return something!

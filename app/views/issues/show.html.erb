@@ -33,6 +33,20 @@
       </div>
     <% end %>
   </div>
+
+<!-- Solver search bar -->
+<div>
+  <%= form_tag project_issue_path, method: :get do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Find A Solver"
+    %>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+
   <!-- add and display solvers -->
   <div class="solvers-container">
     <% @solvers.each do |solver| %>

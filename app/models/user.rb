@@ -16,7 +16,15 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :photo, integrity: true, processing: true
 
-
+  include PgSearch::Model
+  pg_search_scope :search_solvers,
+    against: [:first_name, :last_name],
+    associated_against: {
+      sub_categories: [ :name ] # singular sub_categories
+    },
+    using: {
+      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+    }
   # include PgSearch::Model
   # pg_search_scope :global_search,
   #   against: [ :first_name, :last_name ],
