@@ -4,6 +4,7 @@ class IssuesController < ApplicationController
 
   def index
     @issues = policy_scope(Issue).order(created_at: :desc).select { |issue| issue.project == @project }
+    @issues = Issue.search_issues(params[:query]) if params[:query].present?
   end
 
   def new
@@ -51,6 +52,7 @@ class IssuesController < ApplicationController
     @solvers = User.where(solver: true)
     @issue_solvers = IssueSolver.where(issue: @issue)
     @issue_solver = IssueSolver.new
+    @solvers = @solvers.search_solvers(params[:query]) if params[:query].present?
   end
 
   def issue_map
@@ -60,6 +62,10 @@ class IssuesController < ApplicationController
 
   def issue_params
     params.require(:issue).permit(:project_id, :map_id, :title)
+  end
+
+  def set_issue
+    @issue = Issue.find(params[:id])
   end
 
   def set_project
