@@ -32,10 +32,16 @@ class IssuesController < ApplicationController
 
   def update
     authorize @issue
-    if params[:issue].present?
+    if params[:issue][:x_coordinate].present?
       @issue.x_coordinate = params[:issue][:x_coordinate]
       @issue.y_coordinate = params[:issue][:y_coordinate]
-      redirect_to issue_messages_path(@issue) if @issue.save
+    elsif params[:issue][:resolved].present?
+      @issue.resolved = params[:issue][:resolved]
+    elsif params[:issue][:accepted].present?
+      @issue.accepted = params[:issue][:accepted]
+    end
+    if @issue.save
+      redirect_to issue_messages_path(@issue)
     else
       render issue_map_pin_path(@project, @issue)
     end

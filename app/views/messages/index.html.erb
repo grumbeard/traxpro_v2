@@ -1,18 +1,29 @@
-<% @messages.each do |message| %>
-  <div class="chat-container">
-    <p><%= message.text %></p>
-      <% unless message.photo.blank? %>
-        <%= cl_image_tag(message.photo, :transformation => { :width => 250, :crop => "pad" }) %>
-      <% end %>
-    <p class="time-right"><%= message.user.first_name %> <%= message.created_at.strftime("%X") %></p>
-  </div>
-<% end %>
-
+<div class="main-section">
+  <% @messages.each do |message| %>
+    <div class="chat-container">
+      <p><%= message.text %></p>
+        <% unless message.photo.blank? %>
+          <%= cl_image_tag(message.photo, :transformation => { :width => 250, :crop => "pad" }) %>
+        <% end %>
+      <p class="time-right"><%= message.user.first_name %> <%= message.created_at.strftime("%X") %></p>
+    </div>
+  <% end %>
+  <% if (@issue.issue_solvers.find {|issue_solver| issue_solver.project_solver == current_user.project_solver }) != nil && @issue.resolved == false %>
+    <div class="action-btn-container contents-center">
+      <%= render "resolve" %>
+    </div>
+  <% end %>
+  <% if (@issue.project.user == current_user) && @issue.resolved == true && @issue.accepted == false %>
+    <div class="action-btn-container">
+      <%= render "accept" %>
+    </div>
+  <% end %>
+</div>
 <!--
 create an input form for message
 for nested routes, pass to simple_form the parent resource, then the child
 -->
-<div>
+<div class="main-section full-screen-height">
   <%= simple_form_for [@issue, @message] do |f| %>
     <%= f.input :text %>
     <%= f.input :photo %>
@@ -21,7 +32,11 @@ for nested routes, pass to simple_form the parent resource, then the child
     <!-- input should POST to message#new -->
     <!-- Entire page should reload to display new messages -->
   <% end %>
-  <%= link_to 'All Issues', project_issues_path(@issue.project) %>
-  <%= link_to 'Map View', map_path(@issue.map) %>
-  <%= link_to 'Issue Details & Add Solver', project_issue_path(@issue.project, @issue) %>
+</div>
+
+
+<div class="btn-container">
+  <%= link_to 'All Issues', project_issues_path(@issue.project), class: "emerald command-btn" %>
+  <%= link_to 'Map View', map_path(@issue.map), class: "emerald command-btn" %>
+  <%= link_to 'Assign Contractor', project_issue_path(@issue.project, @issue), class: "emerald command-btn" %>
 </div>
