@@ -1,3 +1,10 @@
-<% @issues.each do |issue| %>
-  <p><%= issue.title %></p>
+<h2 style="color: black"><%= @project.issues_created_last_month.length %> issues created last month</h2>
+<% @project.issues_created_last_month.each do |issue| %>
+  <p style="color: black"><%= issue.title %>      <%= issue.date_created %></p>
 <% end %>
+
+
+
+<!-- <canvas id="bar-chart" width="600" height="350"></canvas> -->
+
+<!-- <h1 data-set-issues-last-month=10> Cocre8 </h1> -->

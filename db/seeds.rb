@@ -83,15 +83,35 @@ ff_e[1..-1].each do |sub_cat|
   ff_e_sub_category.save
 end
 
-puts "Creating 10 issues"
-10.times do
+puts "Creating 100 issues"
+100.times do
+  date_created = DateTime.now - rand(15..188)
+  resolved = rand > 0.3
+  if resolved == true
+    date_resolved = date_created + rand(3..30)
+    accepted = rand > 0.7
+    if accepted == true
+      date_accepted = date_resolved + rand(7..60)
+    else
+      accepted = false
+      resolved = false
+    end
+  else
+    resolved = false
+  end
+
   new_issue = Issue.new(
     map: Map.all.sample,
     x_coordinate: rand(1..30),
     y_coordinate: rand(1..30),
     title: Faker::Book.title,
     project: Project.all.sample,
-    # rand(10.years).ago
+    resolved: resolved,
+    accepted: accepted,
+    date_created: date_created,
+    deadline: date_created + rand(7..45),
+    date_resolved: date_resolved,
+    date_accepted: date_accepted,
     )
   new_issue.save
   new_categorization = Categorization.new(issue: new_issue, sub_category: SubCategory.all.sample)
