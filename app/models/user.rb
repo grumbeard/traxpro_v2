@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  mount_uploader :photo, PhotoUploader
+
   has_many :projects, dependent: :destroy
   has_many :issues, through: :projects
   has_many :maps, through: :projects
@@ -12,6 +14,8 @@ class User < ApplicationRecord
   has_one :project_solver
 
   validates :first_name, presence: true
+  validates :photo, integrity: true, processing: true
+
 
   # include PgSearch::Model
   # pg_search_scope :global_search,
