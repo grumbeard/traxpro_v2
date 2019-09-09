@@ -1,6 +1,6 @@
 class IssuesController < ApplicationController
   before_action :set_project, only: [:index, :new, :create, :update]
-  before_action :set_issue, only: [:update, :show]
+  before_action :set_issue, only: [:update, :show, :issue_map]
 
   def index
     @issues = policy_scope(Issue).order(created_at: :desc).select { |issue| issue.project == @project }
@@ -49,6 +49,8 @@ class IssuesController < ApplicationController
     @solvers = @solvers.search_solvers(params[:query]) if params[:query].present?
   end
 
+  def issue_map
+  end
 
   private
 
@@ -62,5 +64,9 @@ class IssuesController < ApplicationController
 
   def set_project
     @project = Project.find(params[:project_id])
+  end
+
+  def set_issue
+    @issue = Issue.find(params[:id])
   end
 end
