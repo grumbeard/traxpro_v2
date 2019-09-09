@@ -1,27 +1,3 @@
 <%= render 'map_all_issues' %>
 
-<ol>
-  <% @map.issues.each do |issue| %>
-    <li>
-      <p>Issue: <%= issue.title %></p>
-      <ul>
-      <% issue.categories.each do |category| %>
-        <li>
-          <p>Category: <%= category.name %></p>
-          <ul>
-            <% issue.sub_categories.each do |subcategory| %>
-              <% if subcategory.category == category %>
-                <li>
-                  <p>Subcategory: <%= subcategory.name %></p>
-                </li>
-              <% end %>
-            <% end %>
-          </ul>
-        </li>
-      <% end %>
-      </ul>
-    </li>
-  <% end %>
-</ol>
-
 <%= link_to 'Back to Project', project_issues_path(@map.project) %>

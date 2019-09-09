@@ -1,5 +1,6 @@
 class IssuesController < ApplicationController
   before_action :set_project, only: [:index, :new, :create, :update]
+  before_action :set_issue, only: [:update, :show, :issue_map]
 
   def index
     @issues = policy_scope(Issue).order(created_at: :desc).select { |issue| issue.project == @project }
@@ -30,7 +31,6 @@ class IssuesController < ApplicationController
   end
 
   def update
-    @issue = Issue.find(params[:id])
     authorize @issue
     if params[:issue].present?
       @issue.x_coordinate = params[:issue][:x_coordinate]
@@ -42,10 +42,12 @@ class IssuesController < ApplicationController
   end
 
   def show
-    @issue = Issue.find(params[:id])
     @solvers = User.where(solver: true)
     @issue_solvers = IssueSolver.where(issue: @issue)
     @issue_solver = IssueSolver.new
+  end
+
+  def issue_map
   end
 
   private
@@ -56,5 +58,9 @@ class IssuesController < ApplicationController
 
   def set_project
     @project = Project.find(params[:project_id])
+  end
+
+  def set_issue
+    @issue = Issue.find(params[:id])
   end
 end

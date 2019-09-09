@@ -17,11 +17,7 @@
   <div class="rounded-card">
     <% @project.maps.each do |map| %>
       <div class="img-container-in-card">
-        <% if map.photo.blank? %>
-          <%= image_tag("https://upload.wikimedia.org/wikipedia/commons/9/9a/Sample_Floorplan.jpg") %>
-        <% else %>
-          <%= cl_image_tag(map.photo, height: 300, width: 400, crop: :fill) %>
-        <% end %>
+        <%= link_to cl_image_tag(@issue.map.photo, height: 300, width: 400, crop: :fill), map_path(@issue.map)%>
       </div>
       <div class="text-container-in-card">
         <p>

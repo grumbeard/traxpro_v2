@@ -20,6 +20,9 @@ Rails.application.routes.draw do
     resources :maps, only: [] do
       get :pin
     end
+    member do
+      get :issue_map
+    end
   end
   resources :maps, only: :show
 end
