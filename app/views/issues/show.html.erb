@@ -1,6 +1,6 @@
+<!-- display issue card -->
 <div class="main-section">
   <div class="rounded-card">
-    <!-- display sub categories -->
     <p class="title-center"><%= @issue.title %></p>
   </div>
   <div class="rounded-card">
@@ -35,14 +35,14 @@
   </div>
 
 <!-- Solver search bar -->
-<div>
+<div class="search-form-control form-group">
   <%= form_tag project_issue_path, method: :get do %>
     <%= text_field_tag :query,
       params[:query],
       class: "form-control",
       placeholder: "Find A Solver"
     %>
-    <%= submit_tag "Search", class: "btn btn-primary" %>
+    <%= submit_tag "Search", class: "btn search-btn-br emerald" %>
   <% end %>
 </div>
 

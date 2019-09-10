@@ -25,13 +25,4 @@ class User < ApplicationRecord
     using: {
       tsearch: { prefix: true } # <-- now `superman batm` will return something!
     }
-  # include PgSearch::Model
-  # pg_search_scope :global_search,
-  #   against: [ :first_name, :last_name ],
-  #   associated_against: {
-  #     sub_category: [ :name ] # singular sub_categories
-  #   },
-  #   using: {
-  #     tsearch: { prefix: true }
-  #   }
 end
