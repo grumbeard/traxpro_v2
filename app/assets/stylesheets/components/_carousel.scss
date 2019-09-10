@@ -1,29 +1,13 @@
-.slider-control-prev, .slider-control-next {
-  background-color: grey;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 8vw;
-  text-align: center;
-  transition: opacity 0.15s ease;
-  .fas {
-    font-size: 24px;
-  }
-}
-
-.slider-control-next {
-  right: 0;
+#form-slider {
+  flex: 1;
 }
 
 .slider-forms-container {
   position: relative;
+  padding-top: 50px;
   overflow: scroll;
   width: 80vw;
-  height: 100vh;
+  height: calc(100% - 10vh);
   margin: 0 auto;
   font-variant: titling-caps;
 }
@@ -40,9 +24,20 @@
 }
 
 .slider-item.active, .slider-item-next, .slider-item-prev {
-    display: block;
+  display: block;
 }
 
 #slider-indicators {
-  bottom: 50px;
+  top: 0px;
+  height: 20px;
+}
+
+#slider-btn-container {
+  display: flex;
+  justify-content: space-around;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 100vw;
+  z-index: 2;
+  position: fixed;
+  bottom: 5vh;
 }

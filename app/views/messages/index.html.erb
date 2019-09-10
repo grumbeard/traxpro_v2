@@ -23,7 +23,7 @@
 create an input form for message
 for nested routes, pass to simple_form the parent resource, then the child
 -->
-<div class="main-section full-screen-height">
+<div class="main-section">
   <%= simple_form_for [@issue, @message] do |f| %>
     <%= f.input :text %>
     <%= f.input :photo %>
