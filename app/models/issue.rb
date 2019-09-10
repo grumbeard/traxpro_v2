@@ -16,6 +16,9 @@ class Issue < ApplicationRecord
   include PgSearch::Model
   pg_search_scope :search_issues,
     against: [:title],
+    associated_against: {
+      map: [ :title ] # singular sub_categories
+    },
     using: {
       tsearch: { prefix: true } # <-- now `superman batm` will return something!
     }
