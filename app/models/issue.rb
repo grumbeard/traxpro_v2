@@ -13,7 +13,7 @@ class Issue < ApplicationRecord
   validates :title, presence: true, length: { maximum: 140 }
   validates :map, presence: true
   validates :categories, presence: true
-  validates :subcategories, presence: true
+  validates :sub_categories, presence: true
   validates :x_coordinate, presence: true, on: :update
   validates :y_coordinate, presence: true, on: :update
 
