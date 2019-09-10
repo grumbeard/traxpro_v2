@@ -25,11 +25,15 @@
   <% end %>
 </div>
   <!-- display solvers pertaining to this issue -->
-  <div class="solvers-container sborder-bottom m-3">
+  <div class="solvers-container border-bottom m-3">
     <% @issue_solvers.each do |solver| %>
-      <div class="solver-details">
-        <%= render partial: "shared/solver_avatars", locals: {solver: solver.project_solver.user} %>
-        <%= solver.project_solver.user.first_name %>
+    <div class="solver-card-container">
+        <div class="rounded-card white solver-card">
+          <div class="solver-details">
+            <%= render partial: "shared/solver_avatars", locals: {solver: solver.project_solver.user} %>
+            <%= solver.project_solver.user.first_name %>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>
