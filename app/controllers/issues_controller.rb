@@ -4,28 +4,37 @@ class IssuesController < ApplicationController
 
   def index
     @issues = policy_scope(Issue).order(created_at: :desc).select { |issue| issue.project == @project }
-    @issues = Issue.search_issues(params[:query]) if params[:query].present?
+    @pending = @issues.select { |issue| (issue.resolved == true) && (issue.accepted == false) }
+    @completed = @issues.select { |issue| issue.accepted == true }
+    if params[:query].present?
+      @issues = Issue.search_issues(params[:query])
+      @pending = Issue.search_issues(params[:query]).select { |issue| (issue.resolved == true) && (issue.accepted == false) }
+      @completed = Issue.search_issues(params[:query]).select { |issue| issue.accepted == true }
+    end
   end
 
   def new
     @user = User.all
     @issue = Issue.new
-    @subcategories = SubCategory.all.map do |sub|
-      { category_id: sub.category_id, id: sub.id, name: sub.name }
-    end
+    set_subcategories
   end
 
   def create
     @issue = Issue.new(issue_params)
     authorize @issue
     @issue.project = @project
-    @map = Map.find(params[:issue][:map_id])
-    if @issue.save
-      params[:subcategories].each do |subcategory|
-        new_categorization = Categorization.new(issue: @issue, sub_category_id: subcategory)
-        new_categorization.save
+    if params[:issue][:map_id] != ""
+      @map = Map.find(params[:issue][:map_id])
+      if params[:subcategories].present? && @issue.save
+        params[:subcategories].each do |subcategory|
+          new_categorization = Categorization.new(issue: @issue, sub_category_id: subcategory)
+          new_categorization.save
+        end
+        redirect_to issue_map_pin_path(@issue, @map)
+      else
+        set_subcategories
+        render 'new'
       end
-      redirect_to issue_map_pin_path(@issue, @map)
     else
       render 'new'
     end
@@ -72,4 +81,9 @@ class IssuesController < ApplicationController
     @issue = Issue.find(params[:id])
   end
 
+  def set_subcategories
+    @subcategories = SubCategory.all.map do |sub|
+      { category_id: sub.category_id, id: sub.id, name: sub.name }
+    end
+  end
 end

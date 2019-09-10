@@ -1,0 +1,25 @@
+<div class="search-form-control form-group">
+  <%= form_tag project_issues_path, method: :get do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Find by Issue or Map"
+    %>
+    <%= submit_tag "Search", class: "btn search-btn-br emerald" %>
+  <% end %>
+</div>
+
+<div class="main-section">
+  <% issues.each do |issue| %>
+    <%= link_to issue_messages_path(issue) do %>
+      <div class="rounded-card issue-card">
+        <p class="title">
+          <%= issue.title %>
+        </p>
+        <p>
+          <%= issue.map.title %>
+        </p>
+      </div>
+    <% end %>
+  <% end %>
+</div>

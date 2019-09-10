@@ -13,11 +13,16 @@ if (categories !== null) {
   categories.forEach((category) => {
     category.addEventListener('click', (event) => {
       const selectedCategory = event.currentTarget;
+      categories.forEach((category) => {
+        category.className = 'rounded-card category-card';
+      });
+      selectedCategory.className = 'rounded-card category-card-selected';
       selectedCategoryId = selectedCategory.dataset['id'];
       filterSubCategories(selectedCategoryId);
     });
   });
 };
+
 
 if (document.querySelector('[data-issues]')) {
     const map_all_pins_checker = document.querySelector('[data-issues]').dataset.issues
