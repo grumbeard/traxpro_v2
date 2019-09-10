@@ -4,7 +4,9 @@ class IssuesController < ApplicationController
 
   def index
     @issues = policy_scope(Issue).order(created_at: :desc).select { |issue| issue.project == @project }
-    @issues = Issue.search_issues(params[:query]) if params[:query].present?
+    if params[:query].present?
+      @issues = Issue.search_issues(params[:query])
+    end
   end
 
   def new
