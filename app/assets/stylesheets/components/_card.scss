@@ -51,16 +51,27 @@
   }
 }
 
-.category-card {
+.category-card, .subcategory-card {
   background-color: white;
   p {
     color: $pink;
   }
+  color: $pink;
 }
 
-.category-card-selected {
+.category-card-selected, .subcategory-card-selected {
   background-color: $orange;
   p {
     color: $white;
   }
+  color: $white;
+}
+
+.subcategory-card, .subcategory-card-selected {
+  height: 8vh;
+  padding: 5px;
+  display:flex;
+  text-align: center;
+  justify-content: center;
+  align-items:center;
 }

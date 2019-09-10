@@ -4,12 +4,28 @@
 
 .slider-forms-container {
   position: relative;
-  padding-top: 50px;
+  padding-top: 30px;
   overflow: scroll;
   width: 80vw;
   height: calc(100% - 10vh);
   margin: 0 auto;
   font-variant: titling-caps;
+}
+
+.issue_title {
+  label {
+    display: none;
+  }
+  input, input::placeholder {
+    font-size: 24px;
+    color: white;
+  }
+}
+
+#issue_title {
+  background-color: $pink;
+  border: none;
+  border-bottom: solid white;
 }
 
 .slider-item {
@@ -32,12 +48,18 @@
   height: 20px;
 }
 
-#slider-btn-container {
+.slider-btn-container {
   display: flex;
   justify-content: space-around;
   background-color: rgba(0, 0, 0, 0.2);
-  width: 100vw;
-  z-index: 2;
-  position: fixed;
-  bottom: 5vh;
+  width: 100%;
+  margin-top: 50px;
+  position: sticky;
+  bottom: 0px;
+}
+
+#category-checkbox {
+  height: 70vh;
+  overflow: auto;
+  margin-bottom: 50px;
 }
