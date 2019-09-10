@@ -1,15 +1,15 @@
-<div>
+<div class="search-form-control form-group">
   <%= form_tag project_issues_path, method: :get do %>
     <%= text_field_tag :query,
       params[:query],
       class: "form-control",
       placeholder: "Find An Issue"
     %>
-    <%= submit_tag "Search", class: "btn btn-primary" %>
+    <%= submit_tag "Search", class: "btn search-btn-br emerald" %>
   <% end %>
 </div>
 
-<div class="main-section">
+<div class="main-section full-screen-height">
   <% @issues.each do |issue| %>
     <%= link_to issue_messages_path(issue) do %>
       <div class="rounded-card issue-card">
