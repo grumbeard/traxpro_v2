@@ -73,10 +73,6 @@ class IssuesController < ApplicationController
     params.require(:issue).permit(:project_id, :map_id, :title)
   end
 
-  def set_issue
-    @issue = Issue.find(params[:id])
-  end
-
   def set_project
     @project = Project.find(params[:project_id])
   end
