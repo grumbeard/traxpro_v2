@@ -10,9 +10,7 @@ class IssuesController < ApplicationController
   def new
     @user = User.all
     @issue = Issue.new
-    @subcategories = SubCategory.all.map do |sub|
-      { category_id: sub.category_id, id: sub.id, name: sub.name }
-    end
+    set_subcategories
   end
 
   def create
@@ -27,6 +25,7 @@ class IssuesController < ApplicationController
       end
       redirect_to issue_map_pin_path(@issue, @map)
     else
+      set_subcategories
       render 'new'
     end
   end
@@ -74,5 +73,11 @@ class IssuesController < ApplicationController
 
   def set_issue
     @issue = Issue.find(params[:id])
+  end
+
+  def set_subcategories
+    @subcategories = SubCategory.all.map do |sub|
+      { category_id: sub.category_id, id: sub.id, name: sub.name }
+    end
   end
 end
