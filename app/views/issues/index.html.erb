@@ -9,23 +9,40 @@
   <% end %>
 </div>
 
-
-
 <div class="main-section full-screen-height">
   <% @issues.each do |issue| %>
     <%= link_to issue_messages_path(issue) do %>
-      <div class="rounded-card issue-card">
-        <p class="title">
-          <%= issue.title %>
-        </p>
-        <p>
-          <%= issue.map.title %>
-        </p>
-      </div>
+        <% if issue.overdue? %>
+          <div class='rounded-card issue-card pink'>
+            <p class="title">
+              <%= issue.title %>
+            </p>
+            <p>
+              <%= issue.map.title %>
+            </p>
+          </div>
+          <% elsif issue.imminent? %>
+          <div class='rounded-card issue-card orange'>
+            <p class="title">
+              <%= issue.title %>
+            </p>
+            <p>
+              <%= issue.map.title %>
+            </p>
+          </div>
+          <% else %>
+          <div class='rounded-card issue-card green'>
+            <p class="title">
+              <%= issue.title %>
+            </p>
+            <p>
+              <%= issue.map.title %>
+            </p>
+          </div>
+        <% end %>
     <% end %>
   <% end %>
 </div>
-
 
 <div class="btn-container">
   <%= link_to 'Report new issue', new_project_issue_path(@project), class: "emerald command-btn" %>
