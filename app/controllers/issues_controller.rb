@@ -4,8 +4,12 @@ class IssuesController < ApplicationController
 
   def index
     @issues = policy_scope(Issue).order(created_at: :desc).select { |issue| issue.project == @project }
+    @pending = @issues.select { |issue| (issue.resolved == true) && (issue.accepted == false) }
+    @completed = @issues.select { |issue| issue.accepted == true }
     if params[:query].present?
       @issues = Issue.search_issues(params[:query])
+      @pending = Issue.search_issues(params[:query]).select { |issue| (issue.resolved == true) && (issue.accepted == false) }
+      @completed = Issue.search_issues(params[:query]).select { |issue| issue.accepted == true }
     end
   end
 
