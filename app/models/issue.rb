@@ -9,7 +9,10 @@ class Issue < ApplicationRecord
   has_many :sub_categories, through: :categorizations
   has_many :categories, through: :sub_categories
 
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: 140 }
+  validates :map, presence: true
+  validates :categories, presence: true
+  validates :subcategories, presence: true
   validates :x_coordinate, presence: true, on: :update
   validates :y_coordinate, presence: true, on: :update
 
