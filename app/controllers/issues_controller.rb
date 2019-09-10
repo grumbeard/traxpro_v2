@@ -19,15 +19,19 @@ class IssuesController < ApplicationController
     @issue = Issue.new(issue_params)
     authorize @issue
     @issue.project = @project
-    @map = Map.find(params[:issue][:map_id])
-    if @issue.save
-      params[:subcategories].each do |subcategory|
-        new_categorization = Categorization.new(issue: @issue, sub_category_id: subcategory)
-        new_categorization.save
+    if params[:issue][:map_id] != ""
+      @map = Map.find(params[:issue][:map_id])
+      if params[:subcategories].present? && @issue.save
+        params[:subcategories].each do |subcategory|
+          new_categorization = Categorization.new(issue: @issue, sub_category_id: subcategory)
+          new_categorization.save
+        end
+        redirect_to issue_map_pin_path(@issue, @map)
+      else
+        set_subcategories
+        render 'new'
       end
-      redirect_to issue_map_pin_path(@issue, @map)
     else
-      set_subcategories
       render 'new'
     end
   end
