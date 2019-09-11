@@ -12,14 +12,36 @@
   font-variant: titling-caps;
 }
 
+.simple_form .string {
+  font-size: 24px;
+  color: black;
+}
+
 .issue_title {
   label {
     display: none;
   }
-  input, input::placeholder {
+  input, input::placeholder, .string {
     font-size: 24px;
     color: white;
+    opacity: 0.7;
   }
+  input::placeholder {
+    opacity: 0.5;
+  }
+}
+
+.issue_map {
+  label {
+    display: none;
+  }
+}
+
+#form-prompt {
+  margin: 50px 0px 20px 0px;
+  padding: 6px 12px;
+  font-size: 24px;
+  color: white;
 }
 
 #issue_title {
