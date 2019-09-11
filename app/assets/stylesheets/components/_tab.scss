@@ -1,0 +1,21 @@
+.tab-nav {
+  padding: 10px;
+  .active {
+    color: white;
+    background-color: $emerald;
+    border: 0;
+  }
+}
+
+.tab-link {
+  color: darkgrey;
+  border: 0.5px solid grey;
+  height: 30px;
+  width: auto;
+  padding: 5px 15px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 16px;
+  transition: opacity 0.15s ease;
+  border-radius: 15px;
+}

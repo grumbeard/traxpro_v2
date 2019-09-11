@@ -3,14 +3,14 @@ class IssuesController < ApplicationController
   before_action :set_issue, only: [:update, :show, :issue_map]
 
   def index
-    @high_priority_issues = policy_scope(Issue).order(deadline: :desc).select { |issue| (issue.project == @project) && (issue.overdue? || issue.imminent?) }
-    @low_priority_issues = policy_scope(Issue).order(created_at: :desc).select { |issue| (issue.project == @project) && (issue.deadline.nil? || !issue.imminent?) }
+    @high_priority_issues = policy_scope(Issue).order(deadline: :desc).select { |issue| (issue.project == @project) && (issue.overdue? || issue.imminent?) && (issue.accepted == false) }
+    @low_priority_issues = policy_scope(Issue).order(created_at: :desc).select { |issue| (issue.project == @project) && (issue.deadline.nil? || !issue.imminent?) && (issue.accepted == false) }
     @high_priority_pending = @high_priority_issues.select { |issue| (issue.resolved == true) && (issue.accepted == false) }
     @low_priority_pending =  @low_priority_issues.select { |issue| (issue.resolved == true) && (issue.accepted == false) }
     @completed = policy_scope(Issue).order(created_at: :desc).select { |issue| issue.accepted == true }
     if params[:query].present?
-      @high_priority_issues = Issue.search_issues(params[:query]).order(deadline: :desc).select { |issue| (issue.project == @project) && (issue.overdue? || issue.imminent?) }
-      @low_priority_issues = Issue.search_issues(params[:query]).order(created_at: :desc).select { |issue| (issue.project == @project) && (issue.deadline.nil? || !issue.imminent?) }
+      @high_priority_issues = Issue.search_issues(params[:query]).order(deadline: :desc).select { |issue| (issue.project == @project) && (issue.overdue? || issue.imminent?) && (issue.accepted == false) }
+      @low_priority_issues = Issue.search_issues(params[:query]).order(created_at: :desc).select { |issue| (issue.project == @project) && (issue.deadline.nil? || !issue.imminent?) && (issue.accepted == false) }
       @high_priority_pending = Issue.search_issues(params[:query]).order(deadline: :desc).select { |issue| (issue.resolved == true) && (issue.accepted == false) }
       @low_priority_pending = Issue.search_issues(params[:query]).order(created_at: :desc).select { |issue| (issue.resolved == true) && (issue.accepted == false) }
       @completed = Issue.search_issues(params[:query]).order(created_at: :desc).select { |issue| issue.accepted == true }

@@ -11,7 +11,7 @@
   bottom: 0px;
   right: 0px;
   left: 0px;
-  background: linear-gradient(rgba(255,255,255,0), rgb(255,255,255));
+  background: linear-gradient(rgba(255,255,255,0) 30%, rgba(255,255,255, 0) 50%, rgb(255,255,255));
 }
 
 .contents-center {
@@ -49,9 +49,14 @@
 }
 
 .command-btn {
-  margin-bottom: 5vh;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.search-btn-br {
-  border-radius: 10px;
+.search-btn {
+  border: 0;
+  width: 50px;
+  .fas {
+    color: darkgrey;
+  }
 }

@@ -21,7 +21,7 @@ body {
     font-weight: 600;
     font-size: 24px;
     line-height: 28px;
-    color: black;
+    color: white;
   }
   h1.title-center {
     font-weight: 600;
@@ -31,7 +31,7 @@ body {
     font-weight: 300;
     font-size: 14px;
     line-height: 16px;
-    color: black;
+    color: white;
   }
   p.title-center {
     font-weight: 600;
@@ -59,7 +59,7 @@ body {
 }
 
 .main-section {
-  margin: 10px 0vw;
+  margin: 10px 8vw;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -99,8 +99,8 @@ body {
   background-color: white;
 }
 
-.lightgrey {
-  background-color: lightgrey;
+.grey {
+  background-color: grey;
 }
 
 .gradient-pink {
@@ -120,6 +120,10 @@ body {
   border: none;
 }
 
-  .navbar-toggler {
+ .navbar-toggler {
   border: none;
   }
+
+.white-text {
+  color: white;
+}
