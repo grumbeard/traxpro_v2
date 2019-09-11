@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
-  <%= link_to "#", class: "navbar-brand" do %>
-    <%= image_tag "logo.png" %>
+  <%= link_to root_path, class: "navbar-brand" do %>
+    <%= image_tag "logo_transparent.png" %>
     <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,13 +12,7 @@
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <li class="nav-item active">
-          <%= link_to "Projects", projects_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item active">
-          <%= link_to "Issues", "#", class: "nav-link" %>
-        </li>
-        <li class="nav-item active">
-          <%= link_to "Statistics", "#", class: "nav-link" %>
+          <h5><%= link_to "Projects", projects_path, class: "nav-link" %></h5>
         </li>
         <li class="nav-item dropdown">
           <% if current_user.photo.blank? %>
@@ -33,7 +27,7 @@
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          <h5><%= link_to "Login", new_user_session_path, class: "nav-link" %></h5>
         </li>
       <% end %>
     </ul>

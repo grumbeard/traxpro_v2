@@ -13,7 +13,7 @@
 @import "pages/index";
 
 body {
-  padding-top: 60px;
+  padding-top: 57px;
   margin: 0;
   width: 100vw;
   font-family: 'Raleway', sans-serif;
@@ -114,6 +114,15 @@ body {
 .darkgrey-text {
   color: darkgrey;
 }
+
+.send-btn {
+  background-color: transparent;
+  border: none;
+}
+
+ .navbar-toggler {
+  border: none;
+  }
 
 .white-text {
   color: white;
