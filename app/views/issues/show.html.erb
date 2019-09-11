@@ -1,8 +1,29 @@
 <!-- display issue card -->
 <div class="main-section">
-  <div class="rounded-card">
-    <p class="title-center"><%= @issue.title %></p>
+  <div class="rounded-card emerald">
+    <p class="title-center mt-3"><%= @issue.title %></p>
   </div>
+
+<% if @issue.deadline.nil? %>
+    <div class="rounded-card" data-toggle="modal" data-target="#exampleModal">
+      <p class="title-center mt-3">Click to add deadline</p>
+    </div>
+<% else %>
+  <% if @issue.overdue? %>
+      <div class="rounded-card pink" data-toggle="modal" data-target="#exampleModal">
+        <p class="title-center mt-3">Deadline: <%= @issue.deadline.strftime("%A, %b %d") %></p>
+      </div>
+    <% elsif @issue.imminent? %>
+      <div class="rounded-card orange" data-toggle="modal" data-target="#exampleModal">
+        <p class="title-center mt-3">Deadline: <%= @issue.deadline.strftime("%A, %b %d") %></p>
+      </div>
+    <% else %>
+      <div class="rounded-card green" data-toggle="modal" data-target="#exampleModal">
+        <p class="title-center mt-3">Deadline: <%= @issue.deadline.strftime("%A, %b %d") %></p>
+      </div>
+  <% end %>
+<% end %>
+
   <div class="rounded-card">
     <div class="img-container-in-card">
       <%= link_to cl_image_tag(@issue.map.photo, height: 300, width: 400, crop: :fill), issue_map_issue_path(@issue, anchor: 'issue_anchor')%>
@@ -24,6 +45,9 @@
     <% end %>
   <% end %>
 </div>
+
+
+
   <!-- display solvers pertaining to this issue -->
   <div class="solvers-container border-bottom m-3">
     <% @issue_solvers.each do |solver| %>
@@ -73,4 +97,26 @@
     <% end %>
   </div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [@project, @issue] do |f| %>
+        <%= f.date_field :deadline, placeholder: 'Enter deadline' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <%= f.button :submit, value: 'Save Changes', class: "btn emerald" %>
+      </div>
+        <% end %>
+    </div>
+  </div>
+</div>
 
