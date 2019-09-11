@@ -3,6 +3,11 @@
   <div class="rounded-card">
     <p class="title-center"><%= @issue.title %></p>
   </div>
+
+<div class="rounded-card">
+  <p class="title-center">Issue Deadline:<%= @issue.deadline %></p>
+</div>
+
   <div class="rounded-card">
     <div class="img-container-in-card">
       <%= link_to cl_image_tag(@issue.map.photo, height: 300, width: 400, crop: :fill), issue_map_issue_path(@issue, anchor: 'issue_anchor')%>
@@ -24,6 +29,9 @@
     <% end %>
   <% end %>
 </div>
+
+
+
   <!-- display solvers pertaining to this issue -->
   <div class="solvers-container border-bottom m-3">
     <% @issue_solvers.each do |solver| %>
