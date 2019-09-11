@@ -11,9 +11,12 @@
         <li data-target="#form-slider" data-slide-to="2"></li>
       </ol>
       <div class="slider-forms-container">
+        <!-- <p class="text-center">all fields required</p> -->
         <%= simple_form_for [@project, @issue] do |f| %>
         <div class="carousel-item active">
-          <%= f.input :title, input_html: { maxlength: 140 }, placeholder: 'Give issue a title*' %>
+          <p id="form-prompt">Give issue a title*:</p>
+          <%= f.input :title, input_html: { maxlength: 140 }, placeholder: 'Issue Title' %>
+          <p id="form-prompt">Select map*:</p>
           <%= f.association :map, collection: @project.maps %>
           <div class="slider-btn-container">
             <a href="#form-slider" role="button" data-slide="next">
