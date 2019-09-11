@@ -36,7 +36,7 @@ for nested routes, pass to simple_form the parent resource, then the child
 
 
 <div class="btn-container">
-  <%= link_to 'All Issues', project_issues_path(@issue.project), class: "emerald command-btn" %>
-  <%= link_to 'Map View', map_path(@issue.map), class: "emerald command-btn" %>
-  <%= link_to 'Assign Contractor', project_issue_path(@issue.project, @issue), class: "emerald command-btn" %>
+  <%= link_to 'All issues', project_issues_path(@issue.project), class: "emerald command-btn" %>
+  <%= link_to 'Map view', issue_map_issue_path(@issue, anchor: 'issue_anchor'), class: "emerald command-btn" %>
+  <%= link_to 'Issue details', project_issue_path(@issue.project, @issue), class: "emerald command-btn" %>
 </div>
