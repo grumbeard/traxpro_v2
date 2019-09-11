@@ -5,12 +5,13 @@
 
 .btn-container {
   width: 100vw;
+  padding-top: 20px;
   z-index: 2;
   position: fixed;
   bottom: 0px;
   right: 0px;
   left: 0px;
-  background: linear-gradient(rgba(255,255,255,0) 75%, rgb(255,255,255));
+  background: linear-gradient(rgba(255,255,255,0) 20%, rgb(255,255,255));
 }
 
 .contents-center {

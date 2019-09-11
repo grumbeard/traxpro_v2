@@ -99,8 +99,8 @@ body {
   background-color: white;
 }
 
-.grey {
-  background-color: darkgrey;
+.lightgrey {
+  background-color: lightgrey;
 }
 
 .gradient-pink {
@@ -109,4 +109,8 @@ body {
 
 .gradient-white {
   background: linear-gradient(rgba(255,255,255,0), rgb(255,255,255));
+}
+
+.darkgrey-text {
+  color: darkgrey;
 }

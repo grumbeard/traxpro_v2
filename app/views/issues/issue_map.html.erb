@@ -1,17 +1,29 @@
-<div class="map-container">
-  <div class="map-image container" style="background-image: url('<%= cl_image_path @issue.map.photo, height: 600, width: 600, crop: :pad %>')">
-    <% for i in 1..30 do %>
-      <div class="row">
-      <% for j in 1..30 do %>
-        <div class="box">
-          <% if i == @issue.x_coordinate && j == @issue.y_coordinate %>
-            <a href='/issues/${@issue.id}/messages'>
-              <i class='fas fa-exclamation-triangle text-pink' id="issue_anchor"></i>
-            </a>
-          <% end %>
+<div class="full-screen-section">
+  <div class="map-container">
+    <div class="map-image container" style="background-image: url('<%= cl_image_path @issue.map.photo, height: 600, width: 600, crop: :pad %>')">
+      <% for i in 1..30 do %>
+        <div class="row">
+        <% for j in 1..30 do %>
+          <div class="box">
+            <% if i == @issue.x_coordinate && j == @issue.y_coordinate %>
+              <a href='/issues/${@issue.id}/messages'>
+                <i class='fas fa-exclamation-triangle text-pink' id="issue_anchor"></i>
+              </a>
+            <% end %>
+          </div>
+        <% end %>
         </div>
       <% end %>
-      </div>
-    <% end %>
+    </div>
+  </div>
+  <div class="main-section">
+    <div class="map-info-container">
+      <h1>Issue location</h1>
+      <p>Map: <%= @issue.map.title %></p>
+    </div>
+  </div>
+  <div class="btn-container">
+    <%= link_to 'Issue details', issue_messages_path(@issue), class: "emerald command-btn" %>
+    <%= link_to 'View all issues on map', map_path(@issue.map), class: "emerald command-btn" %>
   </div>
 </div>
