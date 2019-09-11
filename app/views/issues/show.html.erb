@@ -1,12 +1,28 @@
 <!-- display issue card -->
 <div class="main-section">
-  <div class="rounded-card">
-    <p class="title-center"><%= @issue.title %></p>
+  <div class="rounded-card emerald">
+    <p class="title-center mt-3"><%= @issue.title %></p>
   </div>
 
-<div class="rounded-card" data-toggle="modal" data-target="#exampleModal">
-  <p class="title-center">Issue Deadline: <%= @issue.deadline.strftime("%A, %b %d") %></p>
-</div>
+<% if @issue.deadline.nil? %>
+    <div class="rounded-card" data-toggle="modal" data-target="#exampleModal">
+      <p class="title-center mt-3">Click to add deadline</p>
+    </div>
+<% else %>
+  <% if @issue.overdue? %>
+      <div class="rounded-card pink" data-toggle="modal" data-target="#exampleModal">
+        <p class="title-center mt-3">Deadline: <%= @issue.deadline.strftime("%A, %b %d") %></p>
+      </div>
+    <% elsif @issue.imminent? %>
+      <div class="rounded-card orange" data-toggle="modal" data-target="#exampleModal">
+        <p class="title-center mt-3">Deadline: <%= @issue.deadline.strftime("%A, %b %d") %></p>
+      </div>
+    <% else %>
+      <div class="rounded-card green" data-toggle="modal" data-target="#exampleModal">
+        <p class="title-center mt-3">Deadline: <%= @issue.deadline.strftime("%A, %b %d") %></p>
+      </div>
+  <% end %>
+<% end %>
 
   <div class="rounded-card">
     <div class="img-container-in-card">

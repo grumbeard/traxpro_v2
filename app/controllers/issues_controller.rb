@@ -52,8 +52,7 @@ class IssuesController < ApplicationController
     end
     @issue.deadline = params[:issue][:deadline] if params[:issue][:deadline]
     if @issue.save
-      raise
-      redirect_to issue_messages_path(@issue)
+      redirect_to project_issue_path(@project, @issue)
     else
       render issue_map_pin_path(@project, @issue)
     end
@@ -65,9 +64,6 @@ class IssuesController < ApplicationController
   #   if @issue.save...
 
   # end
-
-
-
 
   def show
     @solvers = User.where(solver: true)
