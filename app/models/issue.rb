@@ -26,18 +26,22 @@ class Issue < ApplicationRecord
     }
 
   def overdue?
-    issue_overdue = deadline - created_at
-    issue_overdue.negative?
+    if deadline?
+      issue_overdue = deadline - created_at
+      issue_overdue.negative?
+    end
   end
 
   def imminent?
-    proj_length = deadline - date_created # days
-    proj_length_alert = proj_length * 0.1 # 1/10 days
-    alert_date = deadline - proj_length_alert # 1/5/19
-    if DateTime.now > alert_date
-      return true
-    else
-      false
+    if deadline?
+      proj_length = deadline - date_created # days
+      proj_length_alert = proj_length * 0.1 # 1/10 days
+      alert_date = deadline - proj_length_alert # 1/5/19
+      if DateTime.now > alert_date
+        return true
+      else
+        false
+      end
     end
   end
 
