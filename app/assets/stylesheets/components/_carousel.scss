@@ -51,11 +51,11 @@
 .slider-btn-container {
   display: flex;
   justify-content: space-around;
-  background-color: rgba(0, 0, 0, 0.2);
   width: 100%;
   margin-top: 50px;
   position: sticky;
   bottom: 0px;
+  background: linear-gradient(rgba(255,255,255,0), rgb(234,82,111));
 }
 
 #category-checkbox {

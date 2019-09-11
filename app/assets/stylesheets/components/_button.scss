@@ -1,7 +1,6 @@
 .btn-container, .action-btn-container {
   display: flex;
   justify-content: space-around;
-  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .btn-container {
@@ -11,6 +10,7 @@
   bottom: 0px;
   right: 0px;
   left: 0px;
+  background: linear-gradient(rgba(255,255,255,0), rgb(255,255,255));
 }
 
 .contents-center {

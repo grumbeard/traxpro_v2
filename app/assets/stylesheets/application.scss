@@ -66,9 +66,13 @@ body {
   overflow: auto;
 }
 
-.limit-screen-height{
+.limit-screen-height {
   height: 80vh;
   overflow: scroll;
+}
+
+.remove-margin {
+  margin: 0;
 }
 
 .emerald {
@@ -93,4 +97,16 @@ body {
 
 .white {
   background-color: white;
+}
+
+.grey {
+  background-color: darkgrey;
+}
+
+.gradient-pink {
+  background: linear-gradient(rgba(255,255,255,0), rgb(234,82,111));
+}
+
+.gradient-white {
+  background: linear-gradient(rgba(255,255,255,0), rgb(255,255,255));
 }
