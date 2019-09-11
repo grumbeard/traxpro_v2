@@ -8,14 +8,18 @@
       <% else %>
         <div class='rounded-card issue-card green'>
       <% end %>
-
-        <p class="title">
-          <%= issue.title %>
-        </p>
-        <p>
-          <%= issue.map.title %>
-        </p>
-      </div>
+          <div class="subcategory-info">
+            <p class="title">
+              <%= issue.title %>
+            </p>
+            <p>
+              <%= issue.map.title %>
+            </p>
+          </div>
+          <div class="subcategory-arrow">
+            <p>&rang;</p>
+          </div>
+        </div>
     <% end %>
   <% end %>
   <% low_priority_issues.each do |issue| %>
@@ -27,13 +31,17 @@
       <% else %>
         <div class='rounded-card issue-card green'>
       <% end %>
-
-        <p class="title">
-          <%= issue.title %>
-        </p>
-        <p>
-          <%= issue.map.title %>
-        </p>
+        <div class="subcategory-info">
+          <p class="title">
+            <%= issue.title %>
+          </p>
+          <p>
+            <%= issue.map.title %>
+          </p>
+        </div>
+        <div class="subcategory-arrow">
+          <p>&rang;</p>
+        </div>
       </div>
     <% end %>
   <% end %>
