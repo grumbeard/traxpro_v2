@@ -33,7 +33,7 @@ class Issue < ApplicationRecord
   end
 
   def imminent?
-    if deadline?
+    if deadline?  && date_created
       proj_length = deadline - date_created # days
       proj_length_alert = proj_length * 0.1 # 1/10 days
       alert_date = deadline - proj_length_alert # 1/5/19

@@ -1,0 +1,16 @@
+Searching 231 files for "deadline?"
+
+/Users/Terence/code/justafterdark/traxpro/app/models/issue.rb:
+   27
+   28    def overdue?
+   29:     if deadline?
+   30        issue_overdue = deadline - created_at
+   31        issue_overdue.negative?
+   ..
+   34
+   35    def imminent?
+   36:     if deadline? && date_crated
+   37        proj_length = deadline - date_created # days
+   38        proj_length_alert = proj_length * 0.1 # 1/10 days
+
+2 matches in 1 file

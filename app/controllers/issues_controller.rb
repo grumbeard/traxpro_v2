@@ -1,5 +1,5 @@
 class IssuesController < ApplicationController
-  before_action :set_project, only: [:index, :new, :create, :update]
+  before_action :set_project, only: [:index, :new, :show, :create, :update]
   before_action :set_issue, only: [:update, :show, :issue_map]
 
   def index
@@ -50,12 +50,24 @@ class IssuesController < ApplicationController
     elsif params[:issue][:accepted].present?
       @issue.accepted = params[:issue][:accepted]
     end
+    @issue.deadline = params[:issue][:deadline] if params[:issue][:deadline]
     if @issue.save
+      raise
       redirect_to issue_messages_path(@issue)
     else
       render issue_map_pin_path(@project, @issue)
     end
   end
+
+  # def update
+  #   my_params = params[:issue] => {deadline: "28-09-2019", description: "bla bla" }
+  #   @issue.update(my_params)
+  #   if @issue.save...
+
+  # end
+
+
+
 
   def show
     @solvers = User.where(solver: true)
@@ -70,7 +82,7 @@ class IssuesController < ApplicationController
   private
 
   def issue_params
-    params.require(:issue).permit(:project_id, :map_id, :title)
+    params.require(:issue).permit(:project_id, :map_id, :title, :deadline)
   end
 
   def set_project
