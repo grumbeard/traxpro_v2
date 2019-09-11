@@ -3,7 +3,7 @@
 .chat-container {
   border: 2px solid #dedede;
   background-color: #f1f1f1;
-  border-radius: 5px;
+  border-radius: 10px;
   position: relative;
   padding: 10px;
   margin: 10px 20px;
@@ -12,6 +12,26 @@
   }
   img{
     width: 100%
+  }
+}
+
+#chat-form-container {
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8));
+  font-size: 25px;
+  padding: 15px;
+  padding-bottom: 25px;
+  align-items: center;
+  .form-group{
+    margin: 0px !important;
+  }
+  .message_text{
+    flex-grow: 1
+  }
+  #trigger-photo{
+    margin-right: 15px;
+    font-size: 25px;
   }
 }
 
