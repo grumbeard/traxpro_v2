@@ -16,7 +16,9 @@
       class: "form-control",
       placeholder: "Find by Issue or Map"
     %>
-    <%= submit_tag "Search", class: "btn search-btn-br emerald" %>
+    <%= button_tag :submit, class: 'btn search-btn' do %>
+      <i class="fas fa-search btn"></i>
+    <% end %>
   <% end %>
 </div>
 <div class="tab-content" id="pills-tabContent">
