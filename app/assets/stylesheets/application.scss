@@ -59,7 +59,7 @@ body {
 }
 
 .main-section {
-  margin: 10px 8vw;
+  margin: 10px 0vw;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -67,7 +67,7 @@ body {
 }
 
 .limit-screen-height {
-  height: 80vh;
+  height: 75vh;
   overflow: scroll;
 }
 
