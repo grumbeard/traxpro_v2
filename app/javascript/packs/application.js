@@ -1,10 +1,11 @@
 import "bootstrap";
 import { toggleBoxesBlue } from '../pages/map';
+import { pinIssue } from '../pages/map';
 import { pinAllIssues } from '../pages/map_pin_issue';
 import { filterSubCategories } from '../filters/filter_subcategories';
 
 const map_page_checker = document.querySelectorAll('.box');
-if (map_page_checker !== null) { toggleBoxesBlue(); };
+if (map_page_checker !== null) { pinIssue(); };
 
 
 const categories = document.querySelectorAll('[data-id]');

@@ -34,15 +34,11 @@
       </p>
     </div>
   </div>
-  <% @issue.categories.each do |category| %>
-    <% @issue.sub_categories.each do |subcategory| %>
-      <div class="rounded-card issue-card subcategory-card">
-        <% if subcategory.category == category %>
-          <p class="title remove-margin">Subcategory: <%= subcategory.name %></p>
-          <p class="remove-margin">Category: <%= category.name %></p>
-        <% end %>
-      </div>
-    <% end %>
+  <% @issue.categorizations.each do |categorization| %>
+    <div class="rounded-card issue-card subcategory-card">
+      <p class="title remove-margin">Subcategory: <%= categorization.sub_category.name %></p>
+      <p class="remove-margin">Category: <%= categorization.sub_category.category.name %></p>
+    </div>
   <% end %>
 </div>
 

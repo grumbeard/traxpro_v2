@@ -50,5 +50,13 @@
 }
 
 .search-btn-br {
-  border-radius: 10px;
+  border-radius: 15px;
+}
+
+.search-btn {
+  border: 0;
+  width: 50px;
+  .fas {
+    color: darkgrey;
+  }
 }
