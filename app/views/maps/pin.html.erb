@@ -1,1 +1,16 @@
-<%= render 'map_pin_issue' %>
+<div class="full-screen-section">
+  <%= render 'map_pin_issue' %>
+  <div class="main-section">
+    <div class="map-info-container">
+      <h1>Issue location</h1>
+      <p>Map: <%= @issue.map.title %></p>
+    </div>
+  </div>
+  <div class="btn-container">
+    <%= simple_form_for [@map.project, @issue] do |f| %>
+    <%= f.hidden_field :x_coordinate, value: 'x' %>
+    <%= f.hidden_field :y_coordinate, value: 'y' %>
+    <%= f.button :submit, value: 'Continue', class: 'emerald command-btn' %>
+    <% end %>
+  </div>
+</div>

@@ -14,7 +14,7 @@
         <%= simple_form_for [@project, @issue] do |f| %>
         <div class="carousel-item active">
           <%= f.input :title, input_html: { maxlength: 140 }, placeholder: 'Give issue a title*' %>
-          <%= f.association :map, collection: @project.maps%>
+          <%= f.association :map, collection: @project.maps %>
           <div class="slider-btn-container">
             <a href="#form-slider" role="button" data-slide="next">
               <div class="emerald action-btn">
