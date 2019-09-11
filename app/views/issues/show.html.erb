@@ -15,10 +15,10 @@
   </div>
   <% @issue.categories.each do |category| %>
     <% @issue.sub_categories.each do |subcategory| %>
-      <div class="rounded-card issue-card">
+      <div class="rounded-card issue-card subcategory-card">
         <% if subcategory.category == category %>
-          <p class="title">Subcategory: <%= subcategory.name %></p>
-          <p>Category: <%= category.name %></p>
+          <p class="title remove-margin">Subcategory: <%= subcategory.name %></p>
+          <p class="remove-margin">Category: <%= category.name %></p>
         <% end %>
       </div>
     <% end %>
