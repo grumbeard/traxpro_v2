@@ -14,18 +14,20 @@
     </div>
   </div>
 
-  <% @project.maps.each do |map| %>
-    <div class="rounded-card">
-      <div class="img-container-in-card">
-        <%= link_to cl_image_tag(map.photo, height: 300, width: 400, crop: :fill), map_path(map)%>
+  <div class="side-scroll-container">
+    <% @project.maps.each do |map| %>
+      <div class="rounded-card">
+        <div class="img-container-in-card">
+          <%= link_to cl_image_tag(map.photo, height: 300, width: 400, crop: :fill), map_path(map)%>
+        </div>
+        <div class="text-container-in-card">
+          <p>
+            <%= map.title %>
+          </p>
+        </div>
       </div>
-      <div class="text-container-in-card">
-        <p>
-          <%= map.title %>
-        </p>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 
   <% if @project.project_solvers.present? %>
   <h1>

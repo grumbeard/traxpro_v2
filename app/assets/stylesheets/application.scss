@@ -71,6 +71,10 @@ body {
   overflow: auto;
 }
 
+.side-scroll-container {
+  display: flex;
+}
+
 .limit-screen-height {
   height: 75vh;
   overflow: scroll;

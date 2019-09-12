@@ -40,11 +40,12 @@ puts "Creating CoCRE8 Project for 'Jimmy'"
 end
 
 puts "Creating 3 more Projects for 'Jimmy'"
-project_names = ['Greater Southern Waterfront Condo', 'Prince Farhan Residences', 'Changi Airport Terminal 6']
+project_names = ['Greater Southern Waterfront Condo', 'Changi Airport Terminal 6', '']
+photo_file_names = ['waterfront.jpg', 'terminal.jpg', 'residence.jpg']
 3.times do |i|
   new_project = Project.new(
     user: jimmy,
-    name: project_names[i-1],
+    name: project_names[i - 1],
     description: "#{Faker::IndustrySegments.sector}: #{Faker::Marketing.buzzwords}"
   )
   new_project.save
@@ -53,7 +54,7 @@ project_names = ['Greater Southern Waterfront Condo', 'Prince Farhan Residences'
     new_map = Map.new(
       project: new_project,
       title: "Unit #{rand(10..500)}#{%w(A B C D)} Level #{j}",
-      photo: Pathname.new(Rails.root.join('app/assets/images/floorplan1.jpg')).open
+      photo: Pathname.new(Rails.root.join("app/assets/images/#{photo_file_names[j - 1]}")).open
     )
     new_map.save
   end
