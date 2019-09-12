@@ -31,28 +31,15 @@ class ProjectsController < ApplicationController
 
   def chart
     @stacked_column = params[:commit]
-    if @stacked_column == "Daily"
 
       # @it_is = "it is Daily"
 
-      @test_1 = @project.cumulative_issues_overdue.length
-      @test_2 = @project.cumulative_issues_accepted.length
-      @test_3 = @project.cumulative_issues_resolved.length
-      @test_4 = @project.cumulative_issues_pending.length - @project.cumulative_issues_overdue.length
-      @test_5 = @project.cumulative_issues_raised.length
-
-      @test_6 = @project.cumulative_issues_overdue
-      @test_7 = @project.cumulative_issues_accepted
-      @test_8 = @project.cumulative_issues_resolved
-      @test_9 = @project.cumulative_issues_pending
-      @test_10 = @project.cumulative_issues_raised
-
       @charts_data = @project.generate_chart
+
     # elsif @stacked_column == "Weekly"
     #   @it_is = "it is Weekly"
     # elsif @stacked_column == "Monthly"
     #   @it_is = "it is Monthly"
-    end
   end
 
 # calculate based on the week
