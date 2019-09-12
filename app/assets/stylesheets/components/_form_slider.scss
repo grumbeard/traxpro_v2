@@ -3,3 +3,11 @@
   width: 40vw;
   margin: 0 auto;
 }
+
+#issue_title:focus {
+box-shadow: 0 0 0 0.05rem rgba(5, 5, 5, 0.15);
+}
+
+#issue_title:-internal-autofill-selected {
+  background-color: blue;
+}
