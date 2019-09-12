@@ -30,9 +30,12 @@
         </p>
         <%= simple_form_for [@issue, @issue_solver] do |f| %>
         <%= f.hidden_field :user_id, value: solver.id %>
-        <%= f.button :submit, value: 'Add' %>
+        <%= f.button :submit, value: 'Add', class: 'grey-btn' %>
         <% end %>
       </div>
     <% end %>
   </div>
+</div>
+<div class="btn-container">
+  <%= link_to 'Back', project_issue_path(@issue), class: 'emerald command-btn' %>
 </div>
