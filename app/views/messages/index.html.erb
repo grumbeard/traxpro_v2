@@ -20,9 +20,9 @@
   <% end %>
 </div>
 
-<div class="btn-container mb-5">
+<div id="floating-button" class="btn-container mb-5">
   <%= link_to 'All Issues', project_issues_path(@issue.project), class: "emerald command-btn" %>
-  <%= link_to 'Map View', map_path(@issue.map), class: "emerald command-btn" %>
+  <%= link_to 'Map View', issue_map_issue_path(@issue, anchor: 'issue_anchor') class: "emerald command-btn" %>
   <%= link_to 'Issue Details', project_issue_path(@issue.project, @issue), class: "emerald command-btn" %>
 </div>
 

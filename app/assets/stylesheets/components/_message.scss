@@ -26,13 +26,18 @@
   .form-group{
     margin: 0px !important;
   }
-  .message_text{
-    flex-grow: 1
+  #message_text{
+    flex-grow: 1;
+    border-radius: 5px;
   }
   #trigger-photo{
     margin-right: 15px;
     font-size: 25px;
   }
+}
+
+#floating-button {
+  bottom: 20px;
 }
 
 // /* Darker chat container */
