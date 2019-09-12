@@ -1,10 +1,8 @@
 require 'faker'
 require 'csv'
 
-puts "Destroying all Categories, Subcategories, Issues and Users..."
-Issue.all.each do |issue|
-  puts issue.title
-end
+puts "Destroying all Categories, Issues and Users..."
+
 Issue.destroy_all
 puts "Destroyed all issues"
 
@@ -32,12 +30,12 @@ puts "Creating 2 Projects for 'Jimmy'"
     description: Faker::Marketing.buzzwords
   )
   new_project.save
-  puts "Creating 5 maps for #{new_project.name}"
-  5.times do
+  puts "Creating 1 map for #{new_project.name}"
+  1.times do
     new_map = Map.new(
       project: new_project,
       title: Faker::Space.galaxy,
-      remote_photo_url: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Sample_Floorplan.jpg'
+      photo: Pathname.new(Rails.root.join('app/assets/images/cocr8_2.png')).open
     )
     new_map.save
   end
@@ -91,7 +89,41 @@ ff_e[1..-1].each do |sub_cat|
   ff_e_sub_category.save
 end
 
-puts "Creating 100 issues"
+puts "Creating 100 new issues"
+
+issue_prefix = [
+  "defective",
+  "broken",
+  "leaking",
+  "spoilt",
+  "cracked",
+  "missing",
+  "unfinished",
+  "sagging",
+  "dampness in",
+  "condensation mould along",
+  "damaged",
+  "poor workmanship in",
+  "collapsed",
+  "wood rot in",
+  "mould in",
+  "fungus in",
+  "termite infestation in"]
+
+issue_suffix = [
+  "paint",
+  "roof framework",
+  "water ingress",
+  "brickwork",
+  "plumbing",
+  "waterworks",
+  "building material",
+  "foundation wall",
+  "drainage systems",
+  "cooling system",
+  "insulation",
+  "fire protection supression system"]
+
 100.times do
   date_created = DateTime.now - rand(15..188)
   resolved = rand > 0.3
@@ -107,7 +139,7 @@ puts "Creating 100 issues"
     map: Map.all.sample,
     x_coordinate: rand(1..30),
     y_coordinate: rand(1..30),
-    title: Faker::Book.title,
+    title: "#{issue_prefix.sample} #{issue_suffix.sample}",
     project: Project.all.sample,
     resolved: resolved,
     accepted: accepted || false,
