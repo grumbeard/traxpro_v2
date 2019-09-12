@@ -1,5 +1,6 @@
 require 'faker'
 require 'csv'
+require 'pry-byebug'
 
 puts "Destroying all Categories, Issues and Users..."
 
@@ -156,6 +157,9 @@ issue_suffix = [
 
 100.times do
   date_created = DateTime.now - rand(15..188)
+  resolved = false
+  accepted = false
+
   resolved = rand > 0.3
   if resolved == true
     date_resolved = date_created + rand(3..30)

@@ -1,9 +1,9 @@
 <%= simple_form_for [@issue.project, @issue] do |f| %>
 <%= f.hidden_field :accepted, value: true %>
-<%= f.button :submit, value: 'Approve', class: 'grey-btn-highlight' %>
+<%= f.button :submit, value: 'Approve', class: 'green-btn-highlight' %>
 <% end %>
 
 <%= simple_form_for [@issue.project, @issue] do |f| %>
 <%= f.hidden_field :resolved, value: false %>
-<%= f.button :submit, value: 'Reject', class: 'grey-btn' %>
+<%= f.button :submit, value: 'Reject', class: 'green-btn' %>
 <% end %>

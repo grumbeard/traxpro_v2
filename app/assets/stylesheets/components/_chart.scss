@@ -1,0 +1,22 @@
+.centered {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.chart_container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.chart_row {
+  height: 30%;
+  width: 100%;
+}
+
+#chart_div {
+  display: inline-block;
+  margin: 0 auto;
+}

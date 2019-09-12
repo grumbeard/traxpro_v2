@@ -1,5 +1,5 @@
 <div class="full-screen-section">
-  <div class="main-section limit-screen-height">
+  <div class="limit-screen-height">
     <% @messages.each do |message| %>
       <div class="chat-container">
         <p><%= message.text %></p>
@@ -10,12 +10,12 @@
       </div>
     <% end %>
     <% if (@issue.issue_solvers.find {|issue_solver| issue_solver.project_solver == current_user.project_solver }) != nil && @issue.resolved == false %>
-      <div class="action-btn-container contents-center beige">
+      <div class="action-btn-container contents-center">
         <%= render "resolve" %>
       </div>
     <% end %>
     <% if (@issue.project.user == current_user) && @issue.resolved == true && @issue.accepted == false %>
-      <div class="action-btn-container beige">
+      <div class="action-btn-container">
         <%= render "accept" %>
       </div>
     <% end %>
@@ -23,7 +23,7 @@
 
   <div class="action-btn-container">
     <%= link_to 'All Issues', project_issues_path(@issue.project), class: "emerald command-btn" %>
-    <%= link_to 'Map View', map_path(@issue.map), class: "emerald command-btn" %>
+    <%= link_to 'Map View', issue_map_issue_path(@issue, anchor: 'issue_anchor'), class: "emerald command-btn" %>
     <%= link_to 'Issue Details', project_issue_path(@issue.project, @issue), class: "emerald command-btn" %>
   </div>
 

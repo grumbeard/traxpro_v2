@@ -23,7 +23,11 @@
 }
 
 #chat-form-container {
+  .icon-btn{
+    width: 33px;
+  }
   display: flex;
+  flex-grow: 1;
   justify-content: space-between;
   background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8));
   font-size: 25px;
@@ -34,12 +38,17 @@
     margin: 0px !important;
   }
   .message_text{
-    flex-grow: 1
+    flex-grow: 1;
+    border-radius: 5px;
   }
   #trigger-photo{
     margin-right: 15px;
     font-size: 25px;
   }
+}
+
+#floating-button {
+  bottom: 20px;
 }
 
 // /* Darker chat container */
