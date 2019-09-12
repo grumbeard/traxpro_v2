@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     end
     member do
       get :issue_map
+      get :assign_solver
     end
   end
   resources :maps, only: :show

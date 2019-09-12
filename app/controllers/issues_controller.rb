@@ -1,6 +1,6 @@
 class IssuesController < ApplicationController
   before_action :set_project, only: [:index, :new, :show, :create, :update]
-  before_action :set_issue, only: [:update, :show, :issue_map]
+  before_action :set_issue, only: [:update, :show, :issue_map, :assign_solver]
 
   def index
     @high_priority_issues = policy_scope(Issue).order(deadline: :desc).select { |issue| (issue.project == @project) && (issue.overdue? || issue.imminent?) && (issue.accepted == false) }
@@ -62,21 +62,17 @@ class IssuesController < ApplicationController
     end
   end
 
-  # def update
-  #   my_params = params[:issue] => {deadline: "28-09-2019", description: "bla bla" }
-  #   @issue.update(my_params)
-  #   if @issue.save...
-
-  # end
-
   def show
-    @solvers = User.where(solver: true)
     @issue_solvers = IssueSolver.where(issue: @issue)
-    @issue_solver = IssueSolver.new
-    @solvers = @solvers.search_solvers(params[:query]) if params[:query].present?
   end
 
   def issue_map
+  end
+
+  def assign_solver
+    @solvers = User.where(solver: true)
+    @issue_solver = IssueSolver.new
+    @solvers = @solvers.search_solvers(params[:query]) if params[:query].present?
   end
 
   private

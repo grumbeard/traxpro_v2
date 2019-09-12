@@ -22,10 +22,12 @@ body {
     font-size: 24px;
     line-height: 28px;
     color: white;
+    text-transform: uppercase;
   }
   h1.title-center {
     font-weight: 600;
     text-align: center;
+    text-transform: uppercase;
   }
   p{
     font-weight: 300;
@@ -33,8 +35,11 @@ body {
     line-height: 16px;
     color: white;
   }
-  p.title-center {
+  p.title, p.title-center {
     font-weight: 600;
+    text-transform: uppercase;
+  }
+  p.title-center {
     text-align: center;
   }
   a {
@@ -74,6 +79,10 @@ body {
 .remove-margin {
   margin: 0;
 }
+
+// .hide {
+//   display: none;
+// }
 
 .emerald {
   background-color: $emerald;
