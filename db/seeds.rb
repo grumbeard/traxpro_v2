@@ -23,11 +23,13 @@ jimmy = User.new(
 jimmy.save
 
 puts "Creating CoCRE8 Project for 'Jimmy'"
+photo_file_names = ['waterfront.jpg', 'terminal.jpg', 'residence.jpg']
 1.times do
   new_project = Project.new(
     user: jimmy,
     name: "CoCRE8",
-    description: "CoCRE8 is a dynamic and inspiring co-working platform, ideal for entrepreneurs & freelancers, inviting collaboration, knowledge, and more."
+    description: "CoCRE8 is a dynamic and inspiring co-working platform, ideal for entrepreneurs & freelancers, inviting collaboration, knowledge, and more.",
+    photo: Pathname.new(Rails.root.join('app/assets/images/cocre8-event-hall.jpg')).open
   )
   new_project.save
   puts "Creating 1 map for #{new_project.name}"
@@ -37,24 +39,33 @@ puts "Creating CoCRE8 Project for 'Jimmy'"
     photo: Pathname.new(Rails.root.join('app/assets/images/cocr8_2.png')).open
   )
   new_map.save
+  puts "Creating 3 maps for #{new_project.name}"
+  3.times do |j|
+    new_map = Map.new(
+      project: new_project,
+      title: "Unit #{rand(10..500)}#{%w(A B C D).sample} Level #{j + 1}",
+      photo: Pathname.new(Rails.root.join("app/assets/images/floorplan1.jpg")).open
+    )
+    new_map.save
+  end
 end
 
 puts "Creating 3 more Projects for 'Jimmy'"
-project_names = ['Greater Southern Waterfront Condo', 'Changi Airport Terminal 6', '']
-photo_file_names = ['waterfront.jpg', 'terminal.jpg', 'residence.jpg']
+project_names = ['Greater Southern Waterfront Condo', 'Changi Airport Terminal 6', 'Wagon Residences']
 3.times do |i|
   new_project = Project.new(
     user: jimmy,
-    name: project_names[i - 1],
-    description: "#{Faker::IndustrySegments.sector}: #{Faker::Marketing.buzzwords}"
+    name: project_names[i],
+    description: "#{Faker::IndustrySegments.sector}: #{Faker::Marketing.buzzwords}",
+    photo: Pathname.new(Rails.root.join("app/assets/images/#{photo_file_names[i]}")).open
   )
   new_project.save
-  puts "Creating 5 map for #{new_project.name}"
-  5.times do |j|
+  puts "Creating 3 maps for '#{new_project.name}'"
+  3.times do |j|
     new_map = Map.new(
       project: new_project,
-      title: "Unit #{rand(10..500)}#{%w(A B C D)} Level #{j}",
-      photo: Pathname.new(Rails.root.join("app/assets/images/#{photo_file_names[j - 1]}")).open
+      title: "Unit #{rand(10..500)}#{%w(A B C D).sample} Level #{j + 1}",
+      photo: Pathname.new(Rails.root.join("app/assets/images/floorplan1.jpg")).open
     )
     new_map.save
   end

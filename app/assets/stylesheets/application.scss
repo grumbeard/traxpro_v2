@@ -72,7 +72,10 @@ body {
 }
 
 .side-scroll-container {
-  display: flex;
+  padding: 20px;
+  p {
+    color: grey;
+  }
 }
 
 .limit-screen-height {
