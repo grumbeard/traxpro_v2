@@ -2,12 +2,17 @@
   <% issues.each do |issue| %>
     <%= link_to issue_messages_path(issue) do %>
       <div class='rounded-card issue-card grey white-text'>
-        <p class="title">
-          <%= issue.title %>
-        </p>
-        <p>
-          <%= issue.map.title %>
-        </p>
+        <div class="subcategory-info">
+          <p class="title">
+            <%= issue.title %>
+          </p>
+          <p>
+            <%= issue.map.title %>
+          </p>
+        </div>
+        <div class="subcategory-arrow">
+          <p>&rang;</p>
+        </div>
       </div>
     <% end %>
   <% end %>

@@ -2,11 +2,18 @@ require 'faker'
 require 'csv'
 
 puts "Destroying all Categories, Subcategories, Issues and Users..."
-Category.destroy_all
-SubCategory.destroy_all
+Issue.all.each do |issue|
+  puts issue.title
+end
 Issue.destroy_all
-ProjectSolver.destroy_all
+puts "Destroyed all issues"
+
 User.destroy_all
+puts "Destroyed all users"
+
+Category.destroy_all
+puts "Destroyed all categories"
+
 
 puts "Creating User 'Jimmy'"
 jimmy = User.new(
@@ -93,12 +100,7 @@ puts "Creating 100 issues"
     accepted = rand > 0.7
     if accepted == true
       date_accepted = date_resolved + rand(7..60)
-    else
-      accepted = false
-      resolved = false
     end
-  else
-    resolved = false
   end
 
   new_issue = Issue.new(
@@ -108,7 +110,7 @@ puts "Creating 100 issues"
     title: Faker::Book.title,
     project: Project.all.sample,
     resolved: resolved,
-    accepted: accepted,
+    accepted: accepted || false,
     date_created: date_created,
     deadline: date_created + rand(7..45),
     date_resolved: date_resolved,
@@ -130,11 +132,13 @@ end
 
 puts "Creating 20 new Users (Solvers)"
 20.times do
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
   new_user = User.new(
-    email: Faker::Internet.email,
     password: 'password',
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
+    first_name: first_name,
+    last_name: last_name,
+    email: "#{first_name}.#{last_name}@gmail.com",
     solver: true
   )
   new_user.save
