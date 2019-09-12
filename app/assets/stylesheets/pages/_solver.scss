@@ -21,3 +21,12 @@
     margin: 5px auto;
   }
 }
+
+.new_issue_solver {
+  flex: 1;
+  display: flex;
+  .btn {
+    align-self: flex-end;
+    margin: 10px auto;
+  }
+}
