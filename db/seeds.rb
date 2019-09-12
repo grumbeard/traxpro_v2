@@ -1,6 +1,5 @@
 require 'faker'
 require 'csv'
-require 'pry-byebug'
 
 puts "Destroying all Categories, Issues and Users..."
 
