@@ -22,20 +22,38 @@ jimmy = User.new(
 )
 jimmy.save
 
-puts "Creating 2 Projects for 'Jimmy'"
-2.times do
+puts "Creating CoCRE8 Project for 'Jimmy'"
+1.times do
   new_project = Project.new(
     user: jimmy,
-    name: Faker::Space.nasa_space_craft,
-    description: Faker::Marketing.buzzwords
+    name: "CoCRE8",
+    description: "CoCRE8 is a dynamic and inspiring co-working platform, ideal for entrepreneurs & freelancers, inviting collaboration, knowledge, and more."
   )
   new_project.save
   puts "Creating 1 map for #{new_project.name}"
-  1.times do
+  new_map = Map.new(
+    project: new_project,
+    title: "Level 8 Event Hall - Le Wagon",
+    photo: Pathname.new(Rails.root.join('app/assets/images/cocr8_2.png')).open
+  )
+  new_map.save
+end
+
+puts "Creating 3 more Projects for 'Jimmy'"
+project_names = ['Greater Southern Waterfront Condo', 'Prince Farhan Residences', 'Changi Airport Terminal 6']
+3.times do |i|
+  new_project = Project.new(
+    user: jimmy,
+    name: project_names[i-1],
+    description: "#{Faker::IndustrySegments.sector}: #{Faker::Marketing.buzzwords}"
+  )
+  new_project.save
+  puts "Creating 5 map for #{new_project.name}"
+  5.times do |j|
     new_map = Map.new(
       project: new_project,
-      title: Faker::Space.galaxy,
-      photo: Pathname.new(Rails.root.join('app/assets/images/cocr8_2.png')).open
+      title: "Unit #{rand(10..500)}#{%w(A B C D)} Level #{j}",
+      photo: Pathname.new(Rails.root.join('app/assets/images/floorplan1.jpg')).open
     )
     new_map.save
   end
