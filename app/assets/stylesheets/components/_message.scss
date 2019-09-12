@@ -1,4 +1,11 @@
 // Messages Styling
+.message_text {
+  input[type='text'] {
+    font-size: 14px;
+    color: grey;
+    opacity: 0.7;
+  }
+}
 /* Chat containers */
 .chat-container {
   border: 2px solid #dedede;
