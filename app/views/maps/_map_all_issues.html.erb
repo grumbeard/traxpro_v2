@@ -1,5 +1,5 @@
 <div class="map-container">
-  <div class="map-image container" style="background-image: url('<%= cl_image_path @map.photo, height: 600, width: 600, crop: :pad %>')">
+  <div class="map-image container" style="background-image: url('<%= cl_image_path @map.photo, height: 600, width: 600, background: "white", crop: :pad %>')">
     <div style="display: none" data-issues='<%= @issues.to_json %>'></div>
     <% for i in 1..30 do %>
       <div class="row">
