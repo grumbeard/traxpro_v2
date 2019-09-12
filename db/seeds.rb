@@ -1,6 +1,5 @@
 require 'faker'
 require 'csv'
-require 'pry-byebug'
 
 puts "Destroying all Categories, Subcategories, Issues and Users..."
 Category.destroy_all
@@ -88,16 +87,18 @@ end
 puts "Creating 100 issues"
 100.times do
   date_created = DateTime.now - rand(15..188)
-  resolved = false
-  accepted = false
-
   resolved = rand > 0.3
   if resolved == true
     date_resolved = date_created + rand(3..30)
     accepted = rand > 0.7
     if accepted == true
       date_accepted = date_resolved + rand(7..60)
+    else
+      accepted = false
+      resolved = false
     end
+  else
+    resolved = false
   end
 
   new_issue = Issue.new(
