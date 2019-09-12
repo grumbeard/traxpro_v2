@@ -2,12 +2,17 @@ require 'faker'
 require 'csv'
 require 'pry-byebug'
 
-puts "Destroying all Categories, Subcategories, Issues and Users..."
-Category.destroy_all
-SubCategory.destroy_all
+puts "Destroying all Categories, Issues and Users..."
+
 Issue.destroy_all
-ProjectSolver.destroy_all
+puts "Destroyed all issues"
+
 User.destroy_all
+puts "Destroyed all users"
+
+Category.destroy_all
+puts "Destroyed all categories"
+
 
 puts "Creating User 'Jimmy'"
 jimmy = User.new(
@@ -18,20 +23,50 @@ jimmy = User.new(
 )
 jimmy.save
 
-puts "Creating 2 Projects for 'Jimmy'"
-2.times do
+puts "Creating CoCRE8 Project for 'Jimmy'"
+photo_file_names = ['waterfront.jpg', 'terminal.jpg', 'residence.jpg']
+1.times do
   new_project = Project.new(
     user: jimmy,
-    name: Faker::Space.nasa_space_craft,
-    description: Faker::Marketing.buzzwords
+    name: "CoCRE8",
+    description: "CoCRE8 is a dynamic and inspiring co-working platform, ideal for entrepreneurs & freelancers, inviting collaboration, knowledge, and more.",
+    photo: Pathname.new(Rails.root.join('app/assets/images/cocre8-event-hall.jpg')).open
   )
   new_project.save
-  puts "Creating 5 maps for #{new_project.name}"
-  5.times do
+  puts "Creating 1 map for #{new_project.name}"
+  new_map = Map.new(
+    project: new_project,
+    title: "Level 8 Event Hall - Le Wagon",
+    photo: Pathname.new(Rails.root.join('app/assets/images/cocr8_2.png')).open
+  )
+  new_map.save
+  puts "Creating 3 maps for #{new_project.name}"
+  3.times do |j|
     new_map = Map.new(
       project: new_project,
-      title: Faker::Space.galaxy,
-      remote_photo_url: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Sample_Floorplan.jpg'
+      title: "Unit #{rand(10..500)}#{%w(A B C D).sample} Level #{j + 1}",
+      photo: Pathname.new(Rails.root.join("app/assets/images/floorplan1.jpg")).open
+    )
+    new_map.save
+  end
+end
+
+puts "Creating 3 more Projects for 'Jimmy'"
+project_names = ['Greater Southern Waterfront Condo', 'Changi Airport Terminal 6', 'Wagon Residences']
+3.times do |i|
+  new_project = Project.new(
+    user: jimmy,
+    name: project_names[i],
+    description: "#{Faker::IndustrySegments.sector}: #{Faker::Marketing.buzzwords}",
+    photo: Pathname.new(Rails.root.join("app/assets/images/#{photo_file_names[i]}")).open
+  )
+  new_project.save
+  puts "Creating 3 maps for '#{new_project.name}'"
+  3.times do |j|
+    new_map = Map.new(
+      project: new_project,
+      title: "Unit #{rand(10..500)}#{%w(A B C D).sample} Level #{j + 1}",
+      photo: Pathname.new(Rails.root.join("app/assets/images/floorplan1.jpg")).open
     )
     new_map.save
   end
@@ -85,7 +120,41 @@ ff_e[1..-1].each do |sub_cat|
   ff_e_sub_category.save
 end
 
-puts "Creating 100 issues"
+puts "Creating 100 new issues"
+
+issue_prefix = [
+  "defective",
+  "broken",
+  "leaking",
+  "spoilt",
+  "cracked",
+  "missing",
+  "unfinished",
+  "sagging",
+  "dampness in",
+  "condensation mould along",
+  "damaged",
+  "poor workmanship in",
+  "collapsed",
+  "wood rot in",
+  "mould in",
+  "fungus in",
+  "termite infestation in"]
+
+issue_suffix = [
+  "paint",
+  "roof framework",
+  "water ingress",
+  "brickwork",
+  "plumbing",
+  "waterworks",
+  "building material",
+  "foundation wall",
+  "drainage systems",
+  "cooling system",
+  "insulation",
+  "fire protection supression system"]
+
 100.times do
   date_created = DateTime.now - rand(15..188)
   resolved = false
@@ -104,10 +173,10 @@ puts "Creating 100 issues"
     map: Map.all.sample,
     x_coordinate: rand(1..30),
     y_coordinate: rand(1..30),
-    title: Faker::Book.title,
+    title: "#{issue_prefix.sample} #{issue_suffix.sample}",
     project: Project.all.sample,
     resolved: resolved,
-    accepted: accepted,
+    accepted: accepted || false,
     date_created: date_created,
     deadline: date_created + rand(7..45),
     date_resolved: date_resolved,
@@ -129,11 +198,13 @@ end
 
 puts "Creating 20 new Users (Solvers)"
 20.times do
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
   new_user = User.new(
-    email: Faker::Internet.email,
     password: 'password',
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
+    first_name: first_name,
+    last_name: last_name,
+    email: "#{first_name}.#{last_name}@gmail.com",
     solver: true
   )
   new_user.save

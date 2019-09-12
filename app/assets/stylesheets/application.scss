@@ -71,6 +71,13 @@ body {
   overflow: auto;
 }
 
+.side-scroll-container {
+  padding: 20px;
+  p {
+    color: grey;
+  }
+}
+
 .limit-screen-height {
   height: 75vh;
   overflow: scroll;
@@ -128,14 +135,9 @@ body {
   color: darkgrey;
 }
 
-.send-btn {
-  background-color: transparent;
-  border: none;
+.navbar-toggler {
+border: none;
 }
-
- .navbar-toggler {
-  border: none;
-  }
 
 .white-text {
   color: white;

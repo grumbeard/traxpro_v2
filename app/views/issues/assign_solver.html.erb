@@ -6,7 +6,7 @@
       class: "form-control",
       placeholder: "Find A Solver"
     %>
-    <%= button_tag :submit, class: 'btn search-btn' do %>
+    <%= button_tag :submit, class: 'btn icon-btn' do %>
       <i class="fas fa-search btn"></i>
     <% end %>
   <% end %>
@@ -37,5 +37,5 @@
   </div>
 </div>
 <div class="btn-container">
-  <%= link_to 'Back', project_issue_path(@issue), class: 'emerald command-btn' %>
+  <%= link_to 'Back', project_issue_path(@project, @issue), class: 'emerald command-btn' %>
 </div>

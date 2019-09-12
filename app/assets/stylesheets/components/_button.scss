@@ -53,10 +53,48 @@
   margin-bottom: 20px;
 }
 
-.search-btn {
+.icon-btn {
   border: 0;
   width: 50px;
+  background-color: transparent;
   .fas {
     color: darkgrey;
   }
+}
+
+.grey-btn, .grey-btn-highlight, .green-btn, .green-btn-highlight {
+  height: 30px;
+  width: auto;
+  padding: 5px 15px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 16px;
+  transition: opacity 0.15s ease;
+  border-radius: 15px;
+}
+
+.grey-btn, .grey-btn-highlight {
+  border: 0.5px solid grey;
+}
+
+.grey-btn {
+  color: darkgrey;
+}
+
+.green-btn, .green-btn-highlight {
+  border: 0.5px solid $green;
+}
+
+.grey-btn-highlight {
+  color: white;
+  background-color: darkgrey;
+}
+
+.green-btn {
+  color: $green;
+}
+
+.green-btn-highlight {
+  color: white;
+  background-color: $green;
 }

@@ -1,43 +1,47 @@
-<div class="main-section limit-screen-height">
-  <% @messages.each do |message| %>
-    <div class="chat-container">
-      <p><%= message.text %></p>
-        <% unless message.photo.blank? %>
-          <%= cl_image_tag(message.photo, :transformation => { :width => 250, :crop => "pad" }) %>
-        <% end %>
-      <p class="time-right"><%= message.user.first_name %> <%= message.created_at.strftime("%X") %></p>
-    </div>
-  <% end %>
-  <% if (@issue.issue_solvers.find {|issue_solver| issue_solver.project_solver == current_user.project_solver }) != nil && @issue.resolved == false %>
-    <div class="action-btn-container contents-center">
-      <%= render "resolve" %>
-    </div>
-  <% end %>
-  <% if (@issue.project.user == current_user) && @issue.resolved == true && @issue.accepted == false %>
-    <div class="action-btn-container">
-      <%= render "accept" %>
-    </div>
-  <% end %>
-</div>
-
-<div id="floating-button" class="btn-container mb-5">
-  <%= link_to 'All Issues', project_issues_path(@issue.project), class: "emerald command-btn" %>
-  <%= link_to 'Map View', issue_map_issue_path(@issue, anchor: 'issue_anchor'), class: "emerald command-btn" %>
-  <%= link_to 'Issue Details', project_issue_path(@issue.project, @issue), class: "emerald command-btn" %>
-</div>
-
-<%= simple_form_for [@issue, @message] do |f| %>
-<div id="chat-form-container" class="fixed-bottom d-flex bd-highlight">
-  <div style='display: none' class="p-2 flex-shrink-1 bd-highlight">
-    <%= f.input :photo %>
-    <% f.input :photo_cache, as: :hidden  %>
-  </div>
-    <i id='trigger-photo' class="fas fa-camera"></i>
-    <%= f.input :text, label: false, placeholder: "Enter your message" %>
-    <%= button_tag type: "submit", class: "send-btn" do %>
-      <i class="far fa-paper-plane"></i>
+<div class="full-screen-section">
+  <div class="limit-screen-height">
+    <% @messages.each do |message| %>
+      <div class="chat-container">
+        <p><%= message.text %></p>
+          <% unless message.photo.blank? %>
+            <%= cl_image_tag(message.photo, :transformation => { :width => 250, :crop => "pad" }) %>
+          <% end %>
+        <p class="time-right"><%= message.user.first_name %> <%= message.created_at.strftime("%X") %></p>
+      </div>
     <% end %>
-  <% end %>
+    <% if (@issue.issue_solvers.find {|issue_solver| issue_solver.project_solver == current_user.project_solver }) != nil && @issue.resolved == false %>
+      <div class="action-btn-container contents-center">
+        <%= render "resolve" %>
+      </div>
+    <% end %>
+    <% if (@issue.project.user == current_user) && @issue.resolved == true && @issue.accepted == false %>
+      <div class="action-btn-container">
+        <%= render "accept" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="action-btn-container">
+    <%= link_to 'All Issues', project_issues_path(@issue.project), class: "emerald command-btn" %>
+    <%= link_to 'Map View', issue_map_issue_path(@issue, anchor: 'issue_anchor'), class: "emerald command-btn" %>
+    <%= link_to 'Issue Details', project_issue_path(@issue.project, @issue), class: "emerald command-btn" %>
+  </div>
+
+  <%= simple_form_for [@issue, @message] do |f| %>
+  <div id="chat-form-container" class="d-flex bd-highlight">
+    <div style='display: none' class="p-2 flex-shrink-1 bd-highlight">
+      <%= f.input :photo %>
+      <% f.input :photo_cache, as: :hidden  %>
+    </div>
+      <div class="icon-btn">
+        <i id='trigger-photo' class="fas fa-camera"></i>
+      </div>
+      <%= f.input :text, label: false, placeholder: "Enter message" %>
+      <%= button_tag type: "submit", class: "icon-btn" do %>
+        <i class="fas fa-paper-plane"></i>
+      <% end %>
+    <% end %>
+    </div>
   </div>
 </div>
 

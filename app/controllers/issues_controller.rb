@@ -72,6 +72,7 @@ class IssuesController < ApplicationController
   def assign_solver
     @solvers = User.where(solver: true)
     @issue_solver = IssueSolver.new
+    @project = @issue.project
     @solvers = @solvers.search_solvers(params[:query]) if params[:query].present?
   end
 

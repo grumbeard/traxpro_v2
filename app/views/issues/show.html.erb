@@ -61,10 +61,6 @@
   <% end %>
 </div>
 
-  <div class="action-btn-container">
-    <%= link_to 'Add Contractor', assign_solver_issue_path(@issue), class: 'emerald command-btn' %>
-  </div>
-
   <div class="btn-container">
       <%= link_to 'All Issues', project_issues_path(@issue.project), class: "emerald command-btn" %>
       <%= link_to 'Message', issue_messages_path(@issue), class: "emerald command-btn" %>
