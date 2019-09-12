@@ -1,0 +1,96 @@
+<!-- display issue card -->
+<div class="main-section">
+  <div class="rounded-card emerald">
+    <p class="title-center mt-3"><%= @issue.title %></p>
+  </div>
+
+  <% if @issue.deadline.nil? %>
+    <div class="rounded-card" data-toggle="modal" data-target="#exampleModal">
+      <p class="title-center mt-3">Click to add deadline</p>
+    </div>
+  <% else %>
+    <% if @issue.overdue? %>
+      <div class="rounded-card pink" data-toggle="modal" data-target="#exampleModal">
+        <p class="title-center mt-3">Deadline: <%= @issue.deadline.strftime("%A, %b %d") %></p>
+      </div>
+    <% elsif @issue.imminent? %>
+      <div class="rounded-card orange" data-toggle="modal" data-target="#exampleModal">
+        <p class="title-center mt-3">Deadline: <%= @issue.deadline.strftime("%A, %b %d") %></p>
+      </div>
+    <% else %>
+      <div class="rounded-card green" data-toggle="modal" data-target="#exampleModal">
+        <p class="title-center mt-3">Deadline: <%= @issue.deadline.strftime("%A, %b %d") %></p>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="rounded-card">
+    <div class="img-container-in-card">
+      <%= link_to cl_image_tag(@issue.map.photo, height: 300, width: 400, crop: :fill), issue_map_issue_path(@issue, anchor: 'issue_anchor')%>
+    </div>
+    <div class="text-container-in-card">
+      <p>
+        <%= @issue.map.title %>
+      </p>
+    </div>
+  </div>
+  <% @issue.categorizations.each do |categorization| %>
+    <div class="rounded-card issue-card subcategory-card">
+      <p class="title remove-margin">Subcategory: <%= categorization.sub_category.name %></p>
+      <p class="remove-margin">Category: <%= categorization.sub_category.category.name %></p>
+    </div>
+  <% end %>
+</div>
+
+<!-- display solvers pertaining to this issue -->
+<h1 class="title-center black-text">Contractors</h1>
+<div class="solvers-container">
+  <% @issue_solvers.each do |solver| %>
+    <div class="rounded-card solver-details white">
+      <%= render partial: "shared/solver_avatars", locals: {solver: solver.project_solver.user} %>
+      <p class="title">
+        <%= solver.project_solver.user.first_name %>
+        <%= solver.project_solver.user.last_name %>
+      </p>
+      <p>
+        <% solver.project_solver.user.sub_categories.each do |sub_cat| %>
+          <%= sub_cat.name %>
+        <% end %>
+      </p>
+    </div>
+  <% end %>
+</div>
+
+  <div class="action-btn-container">
+    <%= link_to 'Add Contractor', assign_solver_issue_path(@issue), class: 'emerald command-btn' %>
+  </div>
+
+  <div class="btn-container">
+      <%= link_to 'All Issues', project_issues_path(@issue.project), class: "emerald command-btn" %>
+      <%= link_to 'Message', issue_messages_path(@issue), class: "emerald command-btn" %>
+      <%= link_to 'Add Contractor', assign_solver_issue_path(@issue), class: 'emerald command-btn' %>
+  </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Enter new deadline</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [@project, @issue] do |f| %>
+        <%= f.date_field :deadline, placeholder: 'Enter deadline', class: "deadline-input" %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <%= f.button :submit, value: 'Save Changes', class: "btn emerald" %>
+      </div>
+        <% end %>
+    </div>
+  </div>
+</div>
+

@@ -1,28 +1,56 @@
-<% if @project.photo.blank? %>
-  <%= image_tag("https://source.unsplash.com/600x400/?sig=#{rand(1..100)}/&mansion,luxury") %>
-<% else %>
-  <%= cl_image_tag(@project.photo, height: 300, width: 400, crop: :fill) %>
-<% end %>
-<%= @project.name %>
+<div class="main-section limit-screen-height">
+  <div class="rounded-card">
+    <div class="img-container-in-card">
+      <% if @project.photo.blank? %>
+        <%= image_tag("https://source.unsplash.com/600x400/?sig=#{rand(1..100)}/&mansion,luxury") %>
+      <% else %>
+        <%= cl_image_tag(@project.photo, height: 300, width: 400, crop: :fill) %>
+      <% end %>
+    </div>
+    <div class="text-container-in-card">
+      <p>
+        <%= @project.name %>
+      </p>
+    </div>
+  </div>
 
-<% @project.maps.each do |map| %>
-  <% if map.photo.blank? %>
-    <%= image_tag("https://upload.wikimedia.org/wikipedia/commons/9/9a/Sample_Floorplan.jpg") %>
-  <% else %>
-    <%= cl_image_tag(map.photo, height: 300, width: 400, crop: :fill) %>
+  <% @project.maps.each do |map| %>
+    <div class="rounded-card">
+      <div class="img-container-in-card">
+        <%= link_to cl_image_tag(map.photo, height: 300, width: 400, crop: :fill), map_path(map)%>
+      </div>
+      <div class="text-container-in-card">
+        <p>
+          <%= map.title %>
+        </p>
+      </div>
+    </div>
   <% end %>
-<% end %>
 
-<% if @project.project_solvers.present? %>
-  <% @project.project_solvers.each do |solver| %>
-    <%= image_tag("https://source.unsplash.com/600x400/?sig=#{rand(1..100)}/&#{%w(man woman).sample},face") %>
-    <%= solver.user.first_name %>
-    <%= solver.user.last_name %>
-    <% solver.user.sub_categories.each do |sub_cat| %>
-      <%= sub_cat.name %>
-    <% end %>
+  <% if @project.project_solvers.present? %>
+  <h1>
+    Contractors assigned
+  </h1>
+    <div class="solvers-container">
+      <% @project.project_solvers.each do |solver| %>
+        <div class="solver-details">
+          <%= render partial: "shared/solver_avatars", locals: {solver: solver.user} %>
+          <p>
+            <%= solver.user.first_name %>
+            <%= solver.user.last_name %>
+          </p>
+          <p>
+            <% solver.user.sub_categories.each do |sub_cat| %>
+              <%= sub_cat.name %>
+            <% end %>
+          </p>
+        </div>
+      <% end %>
+    </div>
   <% end %>
-<% end %>
+</div>
 
-<%= link_to 'Add contractors', solvers_project_path(@project) %>
-<%= link_to 'Done', project_issues_path(@project) %>
+<div class="btn-container">
+  <%= link_to 'Add contractors', solvers_project_path(@project), class: "emerald command-btn" %>
+  <%= link_to 'Done', project_issues_path(@project), class: "emerald command-btn" %>
+</div>

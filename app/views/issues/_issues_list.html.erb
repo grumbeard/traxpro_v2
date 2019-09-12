@@ -1,0 +1,48 @@
+<div class="main-section">
+  <% high_priority_issues.each do |issue| %>
+    <%= link_to issue_messages_path(issue) do %>
+      <% if issue.overdue? %>
+        <div class='rounded-card issue-card pink'>
+      <% elsif issue.imminent? %>
+        <div class='rounded-card issue-card orange'>
+      <% else %>
+        <div class='rounded-card issue-card green'>
+      <% end %>
+          <div class="subcategory-info">
+            <p class="title">
+              <%= issue.title %>
+            </p>
+            <p>
+              <%= issue.map.title %>
+            </p>
+          </div>
+          <div class="subcategory-arrow">
+            <p>&rang;</p>
+          </div>
+        </div>
+    <% end %>
+  <% end %>
+  <% low_priority_issues.each do |issue| %>
+    <%= link_to issue_messages_path(issue) do %>
+      <% if issue.overdue? %>
+        <div class='rounded-card issue-card pink'>
+      <% elsif issue.imminent? %>
+        <div class='rounded-card issue-card orange'>
+      <% else %>
+        <div class='rounded-card issue-card green'>
+      <% end %>
+        <div class="subcategory-info">
+          <p class="title">
+            <%= issue.title %>
+          </p>
+          <p>
+            <%= issue.map.title %>
+          </p>
+        </div>
+        <div class="subcategory-arrow">
+          <p>&rang;</p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

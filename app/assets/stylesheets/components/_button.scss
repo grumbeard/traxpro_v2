@@ -1,26 +1,62 @@
+.btn-container, .action-btn-container {
+  display: flex;
+  justify-content: space-around;
+}
+
 .btn-container {
   width: 100vw;
+  padding-top: 20px;
   z-index: 2;
-  position: absolute;
-  bottom: 0px;
-  display: flex;
-  justify-content: space-around
+  position: fixed;
+  bottom: -5px;
+  right: 0px;
+  left: 0px;
+  background: linear-gradient(rgba(255,255,255,0) 30%, rgba(255,255,255, 0) 50%, rgb(255,255,255));
 }
+
+.contents-center {
+  justify-content: center;
+}
+
 .create-btn {
   align-self: flex-end;
   padding: 20px;
   width: 80px;
   height: 80px;
+  position: absolute;
+  right: -10px;
+  bottom: -10px;
   border-radius: 50%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: opacity 0.15s ease;
+  display: flex;
+  .fas {
+    margin: auto;
+    font-size: 32px
+  }
+}
+
+.command-btn, .action-btn {
+  height: 30px;
+  width: auto;
+  padding: 5px 15px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 16px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: opacity 0.15s ease;
+  border-radius: 15px;
 }
 
 .command-btn {
-  height: 30px;
-  width: auto;
-  padding: 5px;
-  text-align: center;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 16px;
-  margin-bottom: 5vh;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.search-btn {
+  border: 0;
+  width: 50px;
+  .fas {
+    color: darkgrey;
+  }
 }

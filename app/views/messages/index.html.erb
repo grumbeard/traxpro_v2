@@ -1,27 +1,48 @@
-<!--
-Display the messages
-<issue_id.message.user[0]>
-<issue_id.message.user[1]>
--->
-<ul>
-<% @messages.each do |message| %>
-  <li><%= message.text %></li>
-  <% unless message.photo.blank? %>
-  <li><%= cl_image_tag message.photo %></li>
+<div class="main-section limit-screen-height">
+  <% @messages.each do |message| %>
+    <div class="chat-container">
+      <p><%= message.text %></p>
+        <% unless message.photo.blank? %>
+          <%= cl_image_tag(message.photo, :transformation => { :width => 250, :crop => "pad" }) %>
+        <% end %>
+      <p class="time-right"><%= message.user.first_name %> <%= message.created_at.strftime("%X") %></p>
+    </div>
   <% end %>
-<% end %>
-</ul>
-<!--
-create an input form for message
-for nested routes, pass to simple_form the parent resource, then the child
--->
+  <% if (@issue.issue_solvers.find {|issue_solver| issue_solver.project_solver == current_user.project_solver }) != nil && @issue.resolved == false %>
+    <div class="action-btn-container contents-center">
+      <%= render "resolve" %>
+    </div>
+  <% end %>
+  <% if (@issue.project.user == current_user) && @issue.resolved == true && @issue.accepted == false %>
+    <div class="action-btn-container">
+      <%= render "accept" %>
+    </div>
+  <% end %>
+</div>
+
+<div id="floating-button" class="btn-container mb-5">
+  <%= link_to 'All Issues', project_issues_path(@issue.project), class: "emerald command-btn" %>
+  <%= link_to 'Map View', issue_map_issue_path(@issue, anchor: 'issue_anchor'), class: "emerald command-btn" %>
+  <%= link_to 'Issue Details', project_issue_path(@issue.project, @issue), class: "emerald command-btn" %>
+</div>
+
 <%= simple_form_for [@issue, @message] do |f| %>
-  <%= f.input :text %>
-  <%= f.input :photo %>
-  <%= f.input :photo_cache, as: :hidden  %>
-  <%= f.button :submit, value: 'Submit' %>
-  <!-- input should POST to message#new -->
-  <%= link_to 'All Issues', project_issues_path(@issue.project) %>
-  <%= link_to 'Map View', map_path(@issue.map) %>
-  <!-- Entire page should reload to display new messages -->
-<% end %>
+<div id="chat-form-container" class="fixed-bottom d-flex bd-highlight">
+  <div style='display: none' class="p-2 flex-shrink-1 bd-highlight">
+    <%= f.input :photo %>
+    <% f.input :photo_cache, as: :hidden  %>
+  </div>
+    <i id='trigger-photo' class="fas fa-camera"></i>
+    <%= f.input :text, label: false, placeholder: "Enter your message" %>
+    <%= button_tag type: "submit", class: "send-btn" do %>
+      <i class="far fa-paper-plane"></i>
+    <% end %>
+  <% end %>
+  </div>
+</div>
+
+<script>
+  document.querySelector('#trigger-photo').addEventListener('click', ()=>{
+   document.querySelector('#message_photo').click()
+  })
+</script>

@@ -1,0 +1,14 @@
+<div class="main-section">
+  <% issues.each do |issue| %>
+    <%= link_to issue_messages_path(issue) do %>
+      <div class='rounded-card issue-card grey white-text'>
+        <p class="title">
+          <%= issue.title %>
+        </p>
+        <p>
+          <%= issue.map.title %>
+        </p>
+      </div>
+    <% end %>
+  <% end %>
+</div>

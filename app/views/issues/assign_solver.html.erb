@@ -1,0 +1,41 @@
+<!-- Solver search bar -->
+<div class="search-form-control form-group">
+  <%= form_tag assign_solver_issue_path(@issue), method: :get do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Find A Solver"
+    %>
+    <%= button_tag :submit, class: 'btn search-btn' do %>
+      <i class="fas fa-search btn"></i>
+    <% end %>
+  <% end %>
+</div>
+
+
+<!-- add and display solvers -->
+<div class="main-section">
+  <div class="solvers-container">
+    <% @solvers.each do |solver| %>
+      <div class="rounded-card solver-details white">
+        <%= render partial: "shared/solver_avatars", locals: {solver: solver.project_solver.user} %>
+        <p class="title">
+          <%= solver.first_name %>
+          <%= solver.last_name %>
+        </p>
+        <p>
+          <% solver.sub_categories.each do |sub_cat| %>
+            <%= sub_cat.name %>
+          <% end %>
+        </p>
+        <%= simple_form_for [@issue, @issue_solver] do |f| %>
+        <%= f.hidden_field :user_id, value: solver.id %>
+        <%= f.button :submit, value: 'Add', class: 'grey-btn' %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="btn-container">
+  <%= link_to 'Back', project_issue_path(@issue), class: 'emerald command-btn' %>
+</div>

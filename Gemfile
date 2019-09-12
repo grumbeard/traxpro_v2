@@ -18,10 +18,11 @@ gem 'webpacker'
 gem 'cloudinary', '~> 1.9.1'
 gem 'carrierwave', '~> 1.2'
 gem 'pundit'
+gem 'pg_search'
+gem 'faker'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
-  gem 'faker'
 end
 
 group :development, :test do
