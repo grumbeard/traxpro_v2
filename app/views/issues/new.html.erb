@@ -1,4 +1,4 @@
-<div class="full-screen-section pink">
+<div class="full-screen-section blue-grey">
   <div class="header-section">
     <h1 class="title-center">Report Issue</h1>
 
@@ -53,14 +53,14 @@
         <div class="carousel-item">
           <p class="text-center">select all that apply</p>
           <div id="category-checkbox"></div>
-          <div class="slider-btn-container">
+          <div class="slider-btn-container" id="slider-btn-container-gradient">
             <a href="#form-slider" role="button" data-slide="prev">
               <div class="emerald action-btn">
                 <p>Back</p>
                 <span class="sr-only">Previous</span>
               </div>
             </a>
-            <%= f.button :submit, value: 'Next', class: "emerald action-btn" %>
+            <%= f.button :submit, value: 'Next', class: "emerald action-btn text-white" %>
           </div>
         </div>
       <% end %>

@@ -1,25 +1,27 @@
-<div class="header-section">
-  <h1 class="black-text"">Your projects</h1>
-</div>
+<div class="full-screen-section">
+  <div class="header-section">
+    <h1 class="black-text"">Your projects</h1>
+  </div>
 
-<div class="main-section">
-  <% @projects.each do |project| %>
-    <div class="rounded-card">
-      <div class="img-container-in-card img-height-100">
-        <% if project.photo.blank? %>
-          <%= link_to image_tag("https://source.unsplash.com/600x400/?sig=#{rand(1..100)}/&mansion,luxury"), project_issues_path(project) %>
-        <% else %>
-          <%= link_to cl_image_tag(project.photo, height: 200, width: 300, crop: :fill), project_issues_path(project) %>
-        <% end %>
+  <div class="main-section">
+    <% @projects.each do |project| %>
+      <div class="rounded-card">
+        <div class="img-container-in-card img-height-100">
+          <% if project.photo.blank? %>
+            <%= link_to image_tag("https://source.unsplash.com/600x400/?sig=#{rand(1..100)}/&mansion,luxury"), project_issues_path(project) %>
+          <% else %>
+            <%= link_to cl_image_tag(project.photo, height: 200, width: 300, crop: :fill), project_issues_path(project) %>
+          <% end %>
+        </div>
+        <div class="text-container-in-card pink">
+          <p><%= project.name %></p>
+        </div>
       </div>
-      <div class="text-container-in-card emerald">
-        <p><%= project.name %></p>
-      </div>
-    </div>
-  <% end %>
-</div>
-<div class="btn-container">
-  <%= link_to new_project_path, class: 'create-btn emerald' do %>
-    <i class="fas fa-plus"></i>
-  <% end %>
+    <% end %>
+  </div>
+  <div class="btn-container">
+    <%= link_to new_project_path, class: 'create-btn emerald' do %>
+      <i class="fas fa-plus"></i>
+    <% end %>
+  </div>
 </div>
