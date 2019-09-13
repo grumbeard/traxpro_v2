@@ -20,6 +20,7 @@ gem 'carrierwave', '~> 1.2'
 gem 'pundit'
 gem 'pg_search'
 gem 'faker'
+gem 'serviceworker-rails'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
