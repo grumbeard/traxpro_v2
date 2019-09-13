@@ -31,7 +31,9 @@ class Project < ApplicationRecord
   def generate_chart
     final = [['Issues', 'Accepted', 'Solved', 'Pending', 'Overdue', { role: 'annotation' }]]
     @issues_week = Hash.new()
-    self.issues.pluck(:date_created).uniq.map do |date|
+    clean_array = self.issues.pluck(:date_created)
+    clean_array.delete(nil)
+    clean_array.uniq.map do |date|
       if @issues_week[date].nil?
         @issues_week[date.strftime('%W')] = [date]
       else
