@@ -11,6 +11,6 @@ class MessagePolicy < ApplicationPolicy
   end
 
   def create?
-    user == record.issue.project.user || record.issue.project.project_solvers.pluck(:user_id).include?(user.id)
+    # user == record.issue.project.user || record.issue.project.project_solvers.pluck(:user_id).include?(user.id)
   end
 end
