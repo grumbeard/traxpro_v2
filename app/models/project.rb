@@ -32,7 +32,7 @@ class Project < ApplicationRecord
     final = [['Issues', 'Accepted', 'Solved', 'Pending', 'Overdue', { role: 'annotation' }]]
     @issues_week = Hash.new()
     self.issues.pluck(:date_created).uniq.map do |date|
-      if @issues_week[date.strftime('%W')].nil?
+      if @issues_week[date].nil?
         @issues_week[date.strftime('%W')] = [date]
       else
         @issues_week[date.strftime('%W')] << date
