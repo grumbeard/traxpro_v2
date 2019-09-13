@@ -1,11 +1,11 @@
 <!-- display issue card -->
 <div class="main-section">
-  <div class="rounded-card emerald">
+  <div class="rounded-card blue-grey">
     <p class="title-center mt-3"><%= @issue.title %></p>
   </div>
 
   <% if @issue.deadline.nil? %>
-    <div class="rounded-card" data-toggle="modal" data-target="#exampleModal">
+    <div class="rounded-card blue-grey" data-toggle="modal" data-target="#exampleModal">
       <p class="title-center mt-3">Click to add deadline</p>
     </div>
   <% else %>
@@ -28,7 +28,7 @@
     <div class="img-container-in-card">
       <%= link_to cl_image_tag(@issue.map.photo, height: 300, width: 400, crop: :fill), issue_map_issue_path(@issue, anchor: 'issue_anchor')%>
     </div>
-    <div class="text-container-in-card">
+    <div class="text-container-in-card blue-grey">
       <p>
         <%= @issue.map.title %>
       </p>
