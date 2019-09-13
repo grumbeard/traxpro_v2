@@ -13,58 +13,58 @@ Category.destroy_all
 puts "Destroyed all categories"
 
 
-puts "Creating User 'Jimmy'"
-jimmy = User.new(
-  email: 'jimmy@traxpro.com',
+puts "Creating User 'Amy'"
+amy = User.new(
+  email: 'amy@traxpro.com',
   password: 'password',
-  first_name: 'Jimmy',
+  first_name: 'Amy',
   last_name: 'Wong'
 )
-jimmy.save
+amy.save
 
-puts "Creating CoCRE8 Project for 'Jimmy'"
+puts "Creating International Building Project for 'amy'"
 photo_file_names = ['waterfront.jpg', 'terminal.jpg', 'residence.jpg']
 1.times do
   new_project = Project.new(
-    user: jimmy,
-    name: "CoCRE8",
-    description: "CoCRE8 is a dynamic and inspiring co-working platform, ideal for entrepreneurs & freelancers, inviting collaboration, knowledge, and more.",
-    photo: Pathname.new(Rails.root.join('app/assets/images/cocre8-event-hall.jpg')).open
+    user: amy,
+    name: "International Building",
+    description: "International Building is a Commercial Building located in Orchard. It houses 110 businesses, including a number of Beauty, Animal Health and other establishments.",
+    photo: Pathname.new(Rails.root.join('app/assets/images/international-building.jpg')).open
   )
   new_project.save
   puts "Creating 1 map for #{new_project.name}"
   new_map = Map.new(
     project: new_project,
-    title: "Level 8 Event Hall - Le Wagon",
+    title: "Level 8 Event Hall - CoCRE8",
     photo: Pathname.new(Rails.root.join('app/assets/images/cocr8_2.png')).open
   )
   new_map.save
-  puts "Creating 3 maps for #{new_project.name}"
-  3.times do |j|
+  puts "Creating 1 map for #{new_project.name}"
+  1.times do
     new_map = Map.new(
       project: new_project,
-      title: "Unit #{rand(10..500)}#{%w(A B C D).sample} Level #{j + 1}",
+      title: "Ground Floor - Retail .sample}",
       photo: Pathname.new(Rails.root.join("app/assets/images/floorplan1.jpg")).open
     )
     new_map.save
   end
 end
 
-puts "Creating 3 more Projects for 'Jimmy'"
+puts "Creating 3 more Projects for 'amy'"
 project_names = ['Greater Southern Waterfront Condo', 'Changi Airport Terminal 6', 'Wagon Residences']
 3.times do |i|
   new_project = Project.new(
-    user: jimmy,
+    user: amy,
     name: project_names[i],
     description: "#{Faker::IndustrySegments.sector}: #{Faker::Marketing.buzzwords}",
     photo: Pathname.new(Rails.root.join("app/assets/images/#{photo_file_names[i]}")).open
   )
   new_project.save
-  puts "Creating 3 maps for '#{new_project.name}'"
-  3.times do |j|
+  puts "Creating 1 map for '#{new_project.name}'"
+  1.times do |j|
     new_map = Map.new(
       project: new_project,
-      title: "Unit #{rand(10..500)}#{%w(A B C D).sample} Level #{j + 1}",
+      title: "Unit #{rand(10..500)}#{["A", "B", "C", "D"].sample} Level #{j + 1}",
       photo: Pathname.new(Rails.root.join("app/assets/images/floorplan1.jpg")).open
     )
     new_map.save
@@ -123,38 +123,27 @@ puts "Creating 100 new issues"
 
 issue_prefix = [
   "defective",
-  "broken",
   "leaking",
-  "spoilt",
   "cracked",
   "missing",
   "unfinished",
   "sagging",
-  "dampness in",
   "condensation mould along",
-  "damaged",
   "poor workmanship in",
   "collapsed",
-  "wood rot in",
   "mould in",
-  "fungus in",
   "termite infestation in"]
 
 issue_suffix = [
-  "paint",
   "roof framework",
   "water ingress",
-  "brickwork",
-  "plumbing",
-  "waterworks",
   "building material",
   "foundation wall",
   "drainage systems",
   "cooling system",
-  "insulation",
   "fire protection supression system"]
 
-100.times do
+20.times do
   date_created = DateTime.now - rand(15..188)
   resolved = false
   accepted = false
@@ -196,7 +185,7 @@ puts "Creating 20 issue solvers"
 end
 
 puts "Creating 20 new Users (Solvers)"
-20.times do
+30.times do
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
   new_user = User.new(
@@ -210,13 +199,38 @@ puts "Creating 20 new Users (Solvers)"
   # 1 Solver created
   new_project_solver = ProjectSolver.new(
     user: new_user,
-    project: jimmy.projects.sample
+    project: amy.projects.sample
   )
   new_project_solver.save
   # 1 Solver assigned to random project
   puts "Assigned #{new_user.first_name} to Project #{new_project_solver.project.name}"
   new_specialization = Specialization.new(
     sub_category: SubCategory.all.sample,
+    user: new_user
+  )
+  new_specialization.save
+end
+
+puts "Creating User 'Travis' (Solver)"
+1.times do
+  new_user = User.new(
+    password: 'password',
+    first_name: 'Travis',
+    last_name: 'CI',
+    email: "travis@traxpro.com",
+    solver: true,
+    photo: Pathname.new(Rails.root.join("app/assets/images/travis.jpeg")).open
+  )
+  new_user.save
+  new_project_solver = ProjectSolver.new(
+    user: new_user,
+    project: Project.find_by(name: "International Building")
+  )
+  puts "Assign #{new_user.first_name} to #{new_project_solver.project.name}"
+  new_project_solver.save
+  puts "Assigned #{new_user.first_name} to Project #{new_project_solver.project.name}"
+  new_specialization = Specialization.new(
+    sub_category: SubCategory.find_by(name: "Air-Conditioning, Refrigeration & Ventilation Works"),
     user: new_user
   )
   new_specialization.save

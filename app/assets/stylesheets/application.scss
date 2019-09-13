@@ -29,6 +29,9 @@ body {
     text-align: center;
     text-transform: uppercase;
   }
+  h5.title {
+    text-transform: uppercase;
+  }
   p{
     font-weight: 300;
     font-size: 14px;
@@ -123,6 +126,10 @@ body {
   background-color: grey;
 }
 
+.blue-grey {
+  background-color: #424B54;
+}
+
 .gradient-pink {
   background: linear-gradient(rgba(255,255,255,0), rgb(234,82,111));
 }
@@ -142,4 +149,3 @@ border: none;
 .white-text {
   color: white;
 }
-

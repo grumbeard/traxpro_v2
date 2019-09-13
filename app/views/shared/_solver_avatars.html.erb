@@ -1,5 +1,5 @@
 <% if solver.photo.url.present? %>
-  <%= image_tag cl_image_tag(solver.project_solver.user.photo, height: 300, width: 300, crop: :fill), class: "avatar-bordered" %>
+  <%= image_tag(cl_image_path(solver.project_solver.user.photo, height: 300, width: 300, crop: :fill), class: "avatar-bordered") %>
 <% else %>
   <%= image_tag("https://source.unsplash.com/300x300/?sig=#{rand(1..100)}/&#{%w(man woman).sample},face", class: "avatar-bordered") %>
 <% end %>

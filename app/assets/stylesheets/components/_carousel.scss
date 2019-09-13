@@ -45,7 +45,7 @@
 }
 
 #issue_title {
-  background-color: $pink;
+  background-color: #424B54;
   border: none;
   border-bottom: solid white;
 }
@@ -77,11 +77,14 @@
   padding-top: 20px;
   position: sticky;
   bottom: 0px;
-  background: linear-gradient(rgba(255,255,255,0) 20%, rgb(234,82,111));
 }
 
 #category-checkbox {
   height: 70vh;
   overflow: auto;
   margin-bottom: 50px;
+}
+
+#slider-btn-container-gradient {
+  background: linear-gradient(rgba(255,255,255,0) 20%, rgb(66,75,84));
 }
