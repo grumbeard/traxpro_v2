@@ -43,7 +43,15 @@ photo_file_names = ['waterfront.jpg', 'terminal.jpg', 'residence.jpg']
   1.times do
     new_map = Map.new(
       project: new_project,
-      title: "Ground Floor - Retail .sample}",
+      title: "Ground Floor - Retail",
+      photo: Pathname.new(Rails.root.join("app/assets/images/floorplan1.jpg")).open
+    )
+    new_map.save
+  end
+  3.times do |j|
+    new_map = Map.new(
+      project: new_project,
+      title: "Unit #{rand(10..500)}#{["A", "B", "C", "D"].sample} Level #{j + 1}",
       photo: Pathname.new(Rails.root.join("app/assets/images/floorplan1.jpg")).open
     )
     new_map.save
