@@ -9,3 +9,4 @@ $(window).on("resize", function() {
   $(".jumbotron").css({ height: $(window).height() + "px" });
 });
 
+//= require serviceworker-companion
