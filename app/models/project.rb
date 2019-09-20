@@ -33,8 +33,8 @@ class Project < ApplicationRecord
     @issues_week = Hash.new()
     clean_array = self.issues.pluck(:date_created)
     clean_array.delete(nil)
-    clean_array.uniq.map do |date|
-      if @issues_week[date].nil?
+    clean_array.uniq.sort.map do |date|
+      if @issues_week[date.strftime('%W')].nil?
         @issues_week[date.strftime('%W')] = [date]
       else
         @issues_week[date.strftime('%W')] << date
@@ -79,3 +79,4 @@ class Project < ApplicationRecord
   end
 
 end
+
