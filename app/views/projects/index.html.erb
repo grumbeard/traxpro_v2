@@ -13,14 +13,14 @@
             <%= link_to cl_image_tag(project.photo, height: 200, width: 300, crop: :fill), project_issues_path(project) %>
           <% end %>
         </div>
-        <div class="text-container-in-card pink">
+        <div class="text-container-in-card navcolor-light">
           <p><%= project.name %></p>
         </div>
       </div>
     <% end %>
   </div>
   <div class="btn-container">
-    <%= link_to new_project_path, class: 'create-btn emerald' do %>
+    <%= link_to new_project_path, class: 'create-btn navcolor-dark' do %>
       <i class="fas fa-plus"></i>
     <% end %>
   </div>

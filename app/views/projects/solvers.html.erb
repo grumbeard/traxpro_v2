@@ -14,12 +14,12 @@
         </p>
         <%= simple_form_for [@project, @project_solver] do |f| %>
         <%= f.hidden_field :user_id, value: solver.id %>
-        <%= f.button :submit, value: 'Add', class: 'grey-btn' %>
+        <%= f.button :submit, value: 'Add', class: 'navcolor-light-btn' %>
         <% end %>
       </div>
     <% end %>
   </div>
 </div>
 <div class="btn-container">
-  <%= link_to 'Back', project_path(@project), class: 'emerald command-btn' %>
+  <%= link_to 'Back', project_path(@project), class: 'navcolor-dark command-btn' %>
 </div>

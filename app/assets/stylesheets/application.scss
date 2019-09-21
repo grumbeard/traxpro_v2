@@ -60,6 +60,7 @@ body {
   display: flex;
   flex-direction: column;
   height: calc(100vh - 60px);
+  padding-top: 10px;
 }
 
 .header-section {
@@ -80,7 +81,7 @@ body {
 .side-scroll-container {
   padding: 20px;
   p {
-    color: grey;
+    color: white;
   }
 }
 
@@ -103,62 +104,58 @@ body {
   color: black;
 }
 
-// .hide {
-//   display: none;
-// }
-
-.emerald {
-  background-color: $emerald;
-}
-
 .green {
   background-color: $green;
-}
-
-.pink {
-  background-color: $pink;
-}
-
-// .pink-lighter {
-//   background-color: rgba(242, 104, 129, 0.6);
-// }
-
-.orange {
-  background-color: $orange;
-}
-
-.beige {
-  background-color: $beige;
 }
 
 .white {
   background-color: white;
 }
 
-.grey {
-  background-color: grey;
-}
-
 .blue-grey {
   background-color: #424B54;
 }
-
-// .gradient-pink {
-//   background: linear-gradient(rgba(255,255,255,0), rgb(234,82,111));
-// }
 
 .gradient-white {
   background: linear-gradient(rgba(255,255,255,0), rgb(255,255,255));
 }
 
-// .darkgrey-text {
-//   color: darkgrey;
-// }
-
-.navbar-toggler {
-border: none;
-}
-
 .white-text {
   color: white;
+}
+
+.none-found-text {
+  text-align: center;
+  color: $light-purple;
+  padding: 10px 0px;
+}
+
+// Nav Colors
+.navcolor-dark {
+  background-color: $dark-purple;
+}
+
+.navcolor-light {
+  background-color: $light-purple;
+}
+
+.navcolor-light-text {
+  color: $light-purple;
+}
+
+// Issue Card Colors
+.issuecolor-3 {
+  background-color: $coral;
+}
+
+.issuecolor-2 {
+  background-color: $puce;
+}
+
+.issuecolor-1 {
+  background-color: $aqua;
+}
+
+.issuecolor-0 {
+  background-color: $slate;
 }

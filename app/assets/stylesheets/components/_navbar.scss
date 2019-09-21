@@ -1,6 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: #FF8A5B;
+  background: $dark-purple;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -9,6 +9,17 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+.navbar-toggler {
+border: none;
+}
+
+#navbar-login-btn {
+  padding: 0px;
+  a {
+    text-transform: uppercase;
+  }
 }
 
 .menu-toggler {

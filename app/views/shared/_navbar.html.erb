@@ -11,8 +11,8 @@
         <%= image_tag cl_image_path(current_user.photo, height: 300, width: 300, crop: :fill), class: "avatar-bordered" %>
       <% end %>
     <% else %>
-      <h5>
-        <%= link_to "Login", new_user_session_path, class: "nav-link title text-white" %>
+      <h5 id="navbar-login-btn">
+        <%= link_to "Login", new_user_session_path, class: "nav-link text-white" %>
       </h5>
     <% end %>
   </button>
