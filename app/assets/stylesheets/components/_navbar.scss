@@ -10,3 +10,16 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.menu-toggler {
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+}
+
+#user-nav-menu {
+  a {
+    color: white;
+    text-transform: uppercase;
+  }
+}
