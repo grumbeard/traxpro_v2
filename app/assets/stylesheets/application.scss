@@ -67,6 +67,8 @@ body {
 }
 
 .main-section {
+  max-width: 315px;
+  justify-self: center;
   margin: 10px 8vw;
   flex: 1;
   display: flex;
