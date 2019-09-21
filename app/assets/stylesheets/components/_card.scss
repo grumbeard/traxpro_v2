@@ -74,13 +74,13 @@
 .category-card, .subcategory-card {
   background-color: white;
   p {
-    color: $pink;
+    color: $light-purple;
   }
-  color: $pink;
+  color: $light-purple;
 }
 
 .category-card-selected, .subcategory-card-selected {
-  background-color: $orange;
+  background-color: $light-purple;
   p {
     color: $white;
   }

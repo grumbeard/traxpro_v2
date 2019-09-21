@@ -7,7 +7,7 @@
         <%= cl_image_tag(@project.photo, height: 300, width: 400, crop: :fill) %>
       <% end %>
     </div>
-    <div class="text-container-in-card">
+    <div class="text-container-in-card navcolor-light">
       <p>
         <%= @project.name %>
       </p>
@@ -26,7 +26,7 @@
             <div class="img-container-in-card">
               <%= link_to cl_image_tag(map.photo, height: 300, width: 400, crop: :fill), map_path(map)%>
             </div>
-            <div class="text-container-in-card">
+            <div class="text-container-in-card navcolor-light">
               <p>
                 <%= map.title %>
               </p>
@@ -45,15 +45,15 @@
     </a>
   </div>
 
-  <% if @project.project_solvers.present? %>
   <h1 class="title-center black-text">
     Contractors assigned
   </h1>
+  <% if @project.project_solvers.present? %>
     <div class="solvers-container">
       <% @project.project_solvers.each do |solver| %>
-        <div class="solver-details">
+        <div class="rounded-card solver-details white">
           <%= render partial: "shared/solver_avatars", locals: {solver: solver.user} %>
-          <p>
+          <p class="title">
             <%= solver.user.first_name %>
             <%= solver.user.last_name %>
           </p>
@@ -65,11 +65,15 @@
         </div>
       <% end %>
     </div>
+  <% else %>
+    <p class="navcolor-light-text none-found-text">
+      No contractors assigned to project.
+    </p>
   <% end %>
 </div>
 
 <div class="btn-container">
-  <%= link_to 'Add contractors', solvers_project_path(@project), class: "emerald command-btn" %>
-  <%= link_to 'Progress', chart_project_path(@project), class: "emerald command-btn" %>
-  <%= link_to 'Done', project_issues_path(@project), class: "emerald command-btn" %>
+  <%= link_to 'Add contractors', solvers_project_path(@project), class: "navcolor-dark command-btn" %>
+  <%= link_to 'Progress', chart_project_path(@project), class: "navcolor-dark command-btn" %>
+  <%= link_to 'Done', project_issues_path(@project), class: "navcolor-dark command-btn" %>
 </div>

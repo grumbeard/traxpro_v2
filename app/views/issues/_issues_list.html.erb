@@ -2,11 +2,11 @@
   <% high_priority_issues.each do |issue| %>
     <%= link_to issue_messages_path(issue) do %>
       <% if issue.overdue? %>
-        <div class='rounded-card issue-card pink'>
+        <div class='rounded-card issue-card issuecolor-3'>
       <% elsif issue.imminent? %>
-        <div class='rounded-card issue-card orange'>
+        <div class='rounded-card issue-card issuecolor-2'>
       <% else %>
-        <div class='rounded-card issue-card green'>
+        <div class='rounded-card issue-card issuecolor-1'>
       <% end %>
           <div class="subcategory-info">
             <p class="title">
@@ -25,11 +25,11 @@
   <% low_priority_issues.each do |issue| %>
     <%= link_to issue_messages_path(issue) do %>
       <% if issue.overdue? %>
-        <div class='rounded-card issue-card pink'>
+        <div class='rounded-card issue-card issuecolor-3'>
       <% elsif issue.imminent? %>
-        <div class='rounded-card issue-card orange'>
+        <div class='rounded-card issue-card issuecolor-2'>
       <% else %>
-        <div class='rounded-card issue-card green'>
+        <div class='rounded-card issue-card issuecolor-1'>
       <% end %>
         <div class="subcategory-info">
           <p class="title">

@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-bottom: 50px;
 }
 
 .solver-details {
@@ -14,7 +15,7 @@
   border-radius: 15px;
   text-align: center;
   p {
-    color: grey;
+    color: $light-purple;
     margin: 5px auto;
   }
   img {

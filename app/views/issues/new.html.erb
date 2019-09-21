@@ -11,7 +11,6 @@
         <li data-target="#form-slider" data-slide-to="2"></li>
       </ol>
       <div class="slider-forms-container">
-        <!-- <p class="text-center">all fields required</p> -->
         <%= simple_form_for [@project, @issue] do |f| %>
         <div class="carousel-item active">
           <p id="form-prompt">Give issue a title*:</p>
@@ -20,7 +19,7 @@
           <%= f.association :map, collection: @project.maps %>
           <div class="slider-btn-container">
             <a href="#form-slider" role="button" data-slide="next">
-              <div class="emerald action-btn">
+              <div class="navcolor-dark action-btn">
                 <p>Continue</p>
                 <span class="sr-only">Next</span>
               </div>
@@ -36,13 +35,13 @@
           <% end %>
           <div class="slider-btn-container">
             <a href="#form-slider" role="button" data-slide="prev">
-              <div class="emerald action-btn">
+              <div class="navcolor-dark action-btn">
                 <p>Back</p>
                 <span class="sr-only">Previous</span>
               </div>
             </a>
             <a href="#form-slider" role="button" data-slide="next">
-              <div class="emerald action-btn">
+              <div class="navcolor-dark action-btn">
                 <p>Continue</p>
                 <span class="sr-only">Next</span>
               </div>
@@ -55,12 +54,12 @@
           <div id="category-checkbox"></div>
           <div class="slider-btn-container">
             <a href="#form-slider" role="button" data-slide="prev">
-              <div class="emerald action-btn">
+              <div class="navcolor-dark action-btn">
                 <p>Back</p>
                 <span class="sr-only">Previous</span>
               </div>
             </a>
-            <%= f.button :submit, value: 'Next', class: "emerald action-btn text-white" %>
+            <%= f.button :submit, value: 'Next', class: "navcolor-dark action-btn text-white" %>
           </div>
         </div>
       <% end %>
