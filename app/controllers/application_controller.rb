@@ -16,6 +16,12 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # Overrides Rails.application.default_url_options[:host]
+  # Allows Rails image helpers to use required absolute URLs
+  def default_url_options
+    { host: ENV["DOMAIN"] || "localhost:3000" }
+  end
+
   def messages_index?
     params[:controller] == 'messages' && params[:action] == 'index'
   end
