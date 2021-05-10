@@ -24,6 +24,7 @@ Our team of 3 aspiring developers (`@teanj`, `@justafterdark` and `@grumbeard`) 
 - Issue Reporters may pin issues directly on uploaded floor plans to automatically capture location information with zero text input
 - Issue Reporters may view all issues pinned on a particular floor plan in 'Map View' and navigate directly to the pin of concern
 - Issue Reporters and Issue Resolvers can chat via a messaging interface within the context of a single issue (provide more details / progress updates / photos)
+- Issues are automatically color-coded and ranked by priority based on proximity to deadline
 
 ## Technologies
 Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
